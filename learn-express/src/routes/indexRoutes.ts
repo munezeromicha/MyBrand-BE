@@ -1,14 +1,15 @@
-import express from "express";
-import { addNewPost, deleteItem, getPost, individualPost } from "../controllers/postController";
+import express, { Router } from "express";
+import { addNewPost, deleteItem, getPost, individualPost } from "../controllers/Controller";
 
-const router = express.Router();
+const router: Router = express.Router();
 
-router.get("/posts", getPost);
+router.get("/blog", getPost);
 
-router.post("/posts", addNewPost);
+router.post("/blog", addNewPost);
 
-router.get("/posts/:id", individualPost);
+router.get("/blog/:id", individualPost);
 
-router.delete("/posts/:id", deleteItem);
+router.delete("/blog/:id", deleteItem);
+
 
 export default router;

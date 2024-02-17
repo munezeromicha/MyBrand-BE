@@ -1,35 +1,37 @@
-import Request, Response from 'express';
-import Post from '../models/postModel';
-import { myPost } from '../models/postModel.js';
+import { Request, Response } from 'express';
+import PostModel from '../models/Blog';
+import { Post }  from '../models/Blog';
 
-const getPost = async(req:Request, res:Response): Promise<void> => {
+
+const getPost = async (req: Request, res: Response): Promise<void> => {
     try {
-        const posts: myPost[] = await Post.find();
+        const posts: Post[] = await PostModel.find();
         res.send(posts);
     } catch (error) {
-        res.status(500).send({ error: 'Internal Server Error' });
+        console.log(error);
     }
 };
 
-const addNewPost = async(req:Request, res:Response): Promise<void> => {
+const addNewPost = async (req: Request, res: Response): Promise<void> => {
     try {
-        const post: myPost = new Post({
+        const post: Post | null = new PostModel({
             title: req.body.title,
             content: req.body.content,
         });
         await post.save();
-        res.status(201).send(post);
+        res.send(post);
     } catch (error) {
-        res.status(500).send({ error: 'Internal Server Error' });
+        // res.status(500).send({ error: error.message });
+        console.log(error);
     }
 };
 
-const individualPost = async(req:Request, res:Response): Promise<void> => {
+const individualPost = async (req: Request, res: Response): Promise<void> => {
     try {
-        const post: myPost | null = await Post.findById(req.params.id);
+        const post: Post | null = await PostModel.findById(req.params.id);
 
         if (!post) {
-            res.status(404).send({ error: 'Post not found' });
+            res.status(404).send({ error: "Post doesn't exist!" });
             return;
         }
 
@@ -44,23 +46,24 @@ const individualPost = async(req:Request, res:Response): Promise<void> => {
         await post.save();
         res.send(post);
     } catch (error) {
-        res.status(500).send({ error: 'Internal Server Error' });
+        // res.status(500).send({ error: error.message });
+        console.log(error);
     }
 };
 
-const deleteItem = async(req:Request, res:Request): Promise<void> => {
+const deleteItem = async (req: Request, res: Response): Promise<void> => {
     try {
-        const deletedPost = await Post.findByIdAndDelete(req.params.id);
-        
-        if (!deletedPost) {
-            res.status(404).send({ error: 'Post not found' });
-            return;
-        }
-
+        await PostModel.deleteOne({ _id: req.params.id });
         res.status(204).send();
     } catch (error) {
-        res.status(500).send({ error: 'Internal Server Error' });
+        // res.status(500).send({ error: error.message });
+        console.log(error);
     }
 };
 
-export { addNewPost, individualPost, deleteItem, getPost };
+export {
+    addNewPost,
+    individualPost,
+    deleteItem,
+    getPost,
+};
