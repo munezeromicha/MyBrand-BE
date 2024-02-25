@@ -1,15 +1,33 @@
-import mongoose, { Schema, model, Document } from "mongoose";
-import { IPost } from '../Types/postTypes';
+import mongoose, { Schema, Document } from 'mongoose';
+import { IComment } from './Comment';
+import { ILike } from './Like';
+import { likeBlog } from '../controllers/likeController';
 
-// Define the schema for the main post
-const Post = new Schema<IPost>({
-    title: { type: String, required: true },
-    content: { type: String, required: true },
-    date: { type: Date, default: Date.now }
-})
+export interface IBlog extends Document {
+  title: string;
+  content: string;
+  // comments: IComment[];
+  likes: ILike[];
+}
 
+const BlogSchema: Schema = new Schema({
+  title: { type: String, required: true },
+  content: { type: String, required: true },
+  comments: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Comment"
+ }],
+   likes:[{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Likes"
+ }]
+});
 
-export default model<IPost>('Post', Post);
+const blog = mongoose.model<IBlog>('Blog', BlogSchema);
+
+export default  blog;
+
+  
 
 
 

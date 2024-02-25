@@ -12,55 +12,65 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getPost = exports.deleteItem = exports.individualPost = exports.addNewPost = void 0;
+exports.createPost = exports.deleteItem = exports.readById = exports.readAll = void 0;
 const Blog_1 = __importDefault(require("../models/Blog"));
-const getPost = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const posts = yield Blog_1.default.find();
-        res.send(posts);
+const joi_1 = __importDefault(require("joi"));
+const createPost = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const schema = joi_1.default.object({
+        title: joi_1.default.string().required(),
+        content: joi_1.default.string().required(),
+    });
+    const { error } = schema.validate(req.body);
+    if (error) {
+        res.status(400).send(error.details[0].message);
+        return;
     }
-    catch (error) {
-        console.log(error);
+    try {
+        const blog = new Blog_1.default(req.body);
+        yield blog.save();
+        res.status(201).send(blog);
+    }
+    catch (err) {
+        res.status(500).send(err);
     }
 });
-exports.getPost = getPost;
-const addNewPost = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.createPost = createPost;
+const readAll = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const post = new Blog_1.default({
-            title: req.body.title,
-            content: req.body.content,
+        const blogs = yield Blog_1.default.find().populate({
+            path: "comments" // in blogs, populate comments
         });
-        yield post.save();
-        res.send(post);
+        res.send(blogs);
     }
-    catch (error) {
-        // res.status(500).send({ error: error.message });
-        console.log(error);
+    catch (err) {
+        res.status(500).send(err);
     }
 });
-exports.addNewPost = addNewPost;
-const individualPost = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.readAll = readAll;
+// const readAllComments = async (req: Request, res: Response): Promise<void> => {
+//   try {
+//       const blogs = await inComment.find().populate({
+//         path: "comments" // in blogs, populate comments
+//      });
+//       res.send(blogs);
+//     } catch (err) {
+//       res.status(500).send(err);
+//     }
+// };
+const readById = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const post = yield Blog_1.default.findById(req.params.id);
-        if (!post) {
-            res.status(404).send({ error: "Post doesn't exist!" });
+        const blog = yield Blog_1.default.findById(req.params.id).populate('comments');
+        if (!blog) {
+            res.status(404).send('Blog not found');
             return;
         }
-        if (req.body.title) {
-            post.title = req.body.title;
-        }
-        if (req.body.content) {
-            post.content = req.body.content;
-        }
-        yield post.save();
-        res.send(post);
+        res.send(blog);
     }
-    catch (error) {
-        // res.status(500).send({ error: error.message });
-        console.log(error);
+    catch (err) {
+        res.status(500).send(err);
     }
 });
-exports.individualPost = individualPost;
+exports.readById = readById;
 const deleteItem = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         yield Blog_1.default.deleteOne({ _id: req.params.id });

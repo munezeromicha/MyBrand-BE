@@ -1,47 +1,43 @@
-// src/controllers/likeController.ts
-
-import { Request, Response } from 'express';
-import Joi from 'joi';
 import Like from '../models/Like';
+import Blog from '../models/Blog';
+import { Request, Response } from 'express';
 
-// Joi schema for like validation
-const likeSchema = Joi.object({
-    userID: Joi.string().required()
-});
 
-export const addLike = async (req: Request, res: Response) => {
+export const likeBlog = async(req: Request, res: Response)=> {
     try {
-        // Validate request body
-        const { error } = likeSchema.validate(req.body);
-        if (error) {
-            return res.status(400).json({ error: error.details[0].message });
-        }
+      const { id } = req.params;
+      const blog = await Blog.findById(id);
+      if (!blog) {
+        return res.status(404).json({ message: 'Blog not found' });
+      }
 
-        const { userID } = req.body;
+      const newLike = new Like({
+        blog: blog.id,
+      })
+      await newLike.save();
 
-        // Create a new like
-        const like = new Like({
-            userID
-        });
+      const numberLike = await Like.countDocuments({blog: req.params.id}).exec();
+      
+      const payload = {
+        message: 'liked',
+        likes: numberLike
+      }
 
-        // Save the like to the database
-        const savedLike = await like.save();
-
-        res.status(201).json(savedLike);
+      res.status(201).json(payload);
     } catch (error) {
-        console.log(error);
-        // res.status(500).json({ error: err.message });
+      console.error(error);
+      res.status(500).json({ message: 'Internal Server Error' });
     }
-};
+  };
 
-export const getAllLikes = async (req: Request, res: Response) => {
-    try {
-        // Fetch all likes
-        const likes = await Like.find();
-
-        res.json(likes);
-    } catch (error) {
-        // res.status(500).json({ error: err.message });
-        console.log(error);
+  export const getLikes = async (req: Request, res: Response) => {
+    try{
+      const all = await Like.find({blog: req.params.id});
+      if(!all){
+        res.status(404).json({ message: 'not found'});
+      }
     }
-};
+    catch (error) {
+      res.status(500).json({error: 'not found'});
+    }
+  }

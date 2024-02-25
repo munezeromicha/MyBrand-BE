@@ -31,8 +31,9 @@ const addQuery = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const savedQuery = yield query.save();
         res.status(201).json(savedQuery);
     }
-    catch (err) {
-        res.status(500).json({ error: err.message });
+    catch (error) {
+        // res.status(500).json({ error: err.message });
+        console.log(error);
     }
 });
 exports.addQuery = addQuery;
@@ -42,8 +43,9 @@ const getAllQueries = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         const queries = yield Query_1.default.find();
         res.json(queries);
     }
-    catch (err) {
-        res.status(500).json({ error: err.message });
+    catch (error) {
+        // res.status(500).json({ error: err.message });
+        console.log(error);
     }
 });
 exports.getAllQueries = getAllQueries;

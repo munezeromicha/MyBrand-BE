@@ -1,5 +1,4 @@
 "use strict";
-// src/controllers/likeController.ts
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -13,44 +12,42 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAllLikes = exports.addLike = void 0;
-const joi_1 = __importDefault(require("joi"));
+exports.getLikes = exports.likeBlog = void 0;
 const Like_1 = __importDefault(require("../models/Like"));
-// Joi schema for like validation
-const likeSchema = joi_1.default.object({
-    userID: joi_1.default.string().required()
-});
-const addLike = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const Blog_1 = __importDefault(require("../models/Blog"));
+const likeBlog = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        // Validate request body
-        const { error } = likeSchema.validate(req.body);
-        if (error) {
-            return res.status(400).json({ error: error.details[0].message });
+        const { id } = req.params;
+        const blog = yield Blog_1.default.findById(id);
+        if (!blog) {
+            return res.status(404).json({ message: 'Blog not found' });
         }
-        const { userID } = req.body;
-        // Create a new like
-        const like = new Like_1.default({
-            userID
+        const newLike = new Like_1.default({
+            blog: blog.id,
         });
-        // Save the like to the database
-        const savedLike = yield like.save();
-        res.status(201).json(savedLike);
+        yield newLike.save();
+        const numberLike = yield Like_1.default.countDocuments({ blog: req.params.id }).exec();
+        const payload = {
+            message: 'liked',
+            likes: numberLike
+        };
+        res.status(201).json(payload);
     }
     catch (error) {
-        console.log(error);
-        // res.status(500).json({ error: err.message });
+        console.error(error);
+        res.status(500).json({ message: 'Internal Server Error' });
     }
 });
-exports.addLike = addLike;
-const getAllLikes = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.likeBlog = likeBlog;
+const getLikes = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        // Fetch all likes
-        const likes = yield Like_1.default.find();
-        res.json(likes);
+        const all = yield Like_1.default.find({ blog: req.params.id });
+        if (!all) {
+            res.status(404).json({ message: 'not found' });
+        }
     }
     catch (error) {
-        // res.status(500).json({ error: err.message });
-        console.log(error);
+        res.status(500).json({ error: 'not found' });
     }
 });
-exports.getAllLikes = getAllLikes;
+exports.getLikes = getLikes;

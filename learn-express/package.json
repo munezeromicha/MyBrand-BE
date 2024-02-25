@@ -3,6 +3,7 @@
   "dependencies": {
     "@hapi/joi": "^17.1.1",
     "@types/mongoose": "^5.11.97",
+    "Babel": "^0.0.1",
     "body-parser": "^1.20.2",
     "cloudinary": "^2.0.1",
     "dotenv": "^16.4.4",
@@ -13,11 +14,14 @@
     "nodemon": "^3.0.3"
   },
   "scripts": {
-    "start": "nodemon ./dir/index.js"
-
+    "start": "node ./dir/index.js"
   },
   "devDependencies": {
+    "@babel/cli": "^7.23.9",
+    "@babel/core": "^7.23.9",
+    "@babel/preset-env": "^7.23.9",
     "@types/express": "^4.17.21",
+    "@types/multer": "^1.4.11",
     "ts-node": "^10.9.2"
   }
 }

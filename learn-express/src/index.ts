@@ -9,7 +9,7 @@ import queryRoutes from './routes/queryRoutes'
 mongoose.connect("mongodb://localhost:27017/micka",)
   .then(() => {
     const app = express();
-
+    const port = 4000;
     app.use(express.json());
 
     app.use("/api", routes);
@@ -17,8 +17,8 @@ mongoose.connect("mongodb://localhost:27017/micka",)
     app.use("/api", likeRoutes);
     app.use("/api", queryRoutes);
 
-    app.listen(9000, () => {
-      console.log("Server has started");
+    app.listen(port, () => {
+      console.log(`Server has started at http://localhost${port}`);
     });
   })
   .catch((error) => {

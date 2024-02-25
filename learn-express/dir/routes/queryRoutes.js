@@ -6,6 +6,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const queryController_1 = require("../controllers/queryController");
 const router = express_1.default.Router();
-router.post('/queries', queryController_1.addQuery);
-router.get('/queries', queryController_1.getAllQueries);
+router.post('blogs/:id/queries', queryController_1.addQuery);
+router.get('blogs/:id/queries', queryController_1.getAllQueries);
 exports.default = router;

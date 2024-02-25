@@ -1,5 +1,4 @@
 "use strict";
-// src/controllers/commentController.ts
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -13,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAllComments = exports.addComment = void 0;
+exports.deleteComment = exports.updateComment = exports.getComment = exports.addComment = void 0;
 const joi_1 = __importDefault(require("joi"));
 const Comment_1 = __importDefault(require("../models/Comment"));
 // Joi schema for comment validation
@@ -42,15 +41,43 @@ const addComment = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     }
 });
 exports.addComment = addComment;
-const getAllComments = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const getComment = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        // Fetch all comments
-        const comments = yield Comment_1.default.find();
-        res.json(comments);
+        const blog = yield Comment_1.default.findById(req.params.id);
+        if (!blog) {
+            return res.status(404).json({ error: 'Comment not found.' });
+        }
+        res.json(blog);
     }
     catch (error) {
-        // res.status(500).json({ error: err.message });
+        res.status(500).json({ error: 'error occurred.' });
+    }
+});
+exports.getComment = getComment;
+const updateComment = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { text } = req.body;
+        // const { error } = postval.validate({ text });
+        // if (error) {
+        //   return res.status(400).json({ error: error.details[0].message });
+        // }
+        const blog = yield Comment_1.default.findByIdAndUpdate(req.params.id, { text }, { new: true });
+        res.json(blog);
+        // await blog?.save();
+    }
+    catch (err) {
+        res.status(400).json({ message: err.message });
+    }
+});
+exports.updateComment = updateComment;
+const deleteComment = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        yield Comment_1.default.deleteOne({ _id: req.params.id });
+        res.status(204).send();
+    }
+    catch (error) {
+        // res.status(500).send({ error: error.message });
         console.log(error);
     }
 });
-exports.getAllComments = getAllComments;
+exports.deleteComment = deleteComment;

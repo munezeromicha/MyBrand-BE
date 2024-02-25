@@ -1,4 +1,3 @@
-// src/controllers/commentController.ts
 
 import { Request, Response } from 'express';
 import Joi from 'joi';
@@ -34,14 +33,40 @@ export const addComment = async (req: Request, res: Response) => {
     }
 };
 
-export const getAllComments = async (req: Request, res: Response) => {
+export const getComment = async (req: Request, res: Response) => {
     try {
-        // Fetch all comments
-        const comments = await Comment.find();
+        const blog = await Comment.findById(req.params.id);
 
-        res.json(comments);
+        if (!blog) {
+            return res.status(404).json({ error: 'Comment not found.' });
+        }
+        res.json(blog);
+    }catch (error) {
+        res.status(500).json({ error: 'error occurred.' });
+    }
+}
+
+export const updateComment = async (req: Request, res: Response) => {
+    try {
+        const {text} = req.body;
+        // const { error } = postval.validate({ text });
+        // if (error) {
+        //   return res.status(400).json({ error: error.details[0].message });
+        // }
+        const blog = await Comment.findByIdAndUpdate(req.params.id, { text }, { new: true });
+        res.json(blog);
+        // await blog?.save();
+    } catch (err: any) {
+        res.status(400).json({ message: err.message });
+    }
+};
+
+export const deleteComment = async (req: Request, res: Response): Promise<void> => {
+    try {
+        await Comment.deleteOne({ _id: req.params.id });
+        res.status(204).send();
     } catch (error) {
-        // res.status(500).json({ error: err.message });
+        // res.status(500).send({ error: error.message });
         console.log(error);
     }
 };

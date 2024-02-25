@@ -1,16 +1,16 @@
-
 import mongoose, { Document, Schema } from 'mongoose';
+export interface ILike extends Document {
+    userId?: number;
+    blog: string;
+  }
+  
+  
+  const LikeSchema: Schema = new Schema({
+    blog: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Blog"
+   },
+    userId: { type: Number, default: 0}
+  });
 
-export interface Like extends Document {
-    userID: mongoose.Types.ObjectId;
-}
-
-const likeSchema: Schema = new Schema({
-    userID: {
-        type: Schema.Types.ObjectId,
-        ref: 'User',
-        required: true
-    }
-});
-
-export default mongoose.model<Like>('Like', likeSchema);
+export default mongoose.model<ILike>('Like', LikeSchema);

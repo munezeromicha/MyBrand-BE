@@ -1,15 +1,30 @@
-import express, { Router } from "express";
-import { addNewPost, deleteItem, getPost, individualPost } from "../controllers/Controller";
+import express, { Request, Response } from 'express';
+// import Joi from 'joi';
+// import Blog, { IBlog } from '../models/Blog';
+import {createPost,readAll,readById,deleteItem} from '../controllers/Controller'
 
-const router: Router = express.Router();
+const router = express.Router();
 
-router.get("/blog", getPost);
+// Create a blog
+router.post('/blogs', createPost);
 
-router.post("/blog", addNewPost);
+// Read all blogs
+router.get('/blogs', readAll);
 
-router.get("/blog/:id", individualPost);
+// Read a blog by ID
+router.get('/blogs/:id', readById);
 
-router.delete("/blog/:id", deleteItem);
+// Add a comment to a blog
+// router.post('/blogs/:id/comments', addComments);
 
+// read comment by ID
+router.get('/blogs/:id/comments' );
+
+
+// Like a blog
+// router.post('/blogs/:id/like', addLike);
+
+//delete a blog
+router.delete("/blogs/:id", deleteItem);
 
 export default router;
