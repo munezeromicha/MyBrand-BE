@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">75.38% </span>
+                <span class="strong">46.15% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>49/65</span>
+                <span class='fraction'>30/65</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">40% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>2/5</span>
+                <span class='fraction'>0/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>12/12</span>
+                <span class='fraction'>6/12</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">70.37% </span>
+                <span class="strong">40.74% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>38/54</span>
+                <span class='fraction'>22/54</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -222,15 +222,15 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -280,14 +280,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -297,13 +297,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -374,15 +374,15 @@ import Post, { Ipost } from "../models/blog";
 import { postSchema } from "../utils/validate";
 &nbsp;
 &nbsp;
-const createPost = async (req: Request, res: Response) =&gt; {
-  try {
-    const { error, value } = postSchema.validate(req.body);
-    if (error) {
-      return res.status(400).json({ error: error.message });
+const createPost = <span class="fstat-no" title="function not covered" >async (r</span>eq: Request, res: Response) =&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" > {</span></span>
+<span class="cstat-no" title="statement not covered" >  try {</span>
+    const { error, value } = <span class="cstat-no" title="statement not covered" >postSchema.validate(req.body);</span>
+<span class="cstat-no" title="statement not covered" >    <span class="missing-if-branch" title="if path not taken" >I</span>if (error) {</span>
+<span class="cstat-no" title="statement not covered" >      return res.status(400).json({ error: error.message });</span>
     }
-    const { title, content } = value;
-    if (!req.file) {
-      return res.status(400).json({ error: "There is no file to display" });
+    const { title, content } = <span class="cstat-no" title="statement not covered" >value;</span>
+<span class="cstat-no" title="statement not covered" >    <span class="missing-if-branch" title="if path not taken" >I</span>if (!req.file) {</span>
+<span class="cstat-no" title="statement not covered" >      return res.status(400).json({ error: "There is no file to display" });</span>
     }
     const exist = <span class="cstat-no" title="statement not covered" >await Post.findOne({ title });</span>
 <span class="cstat-no" title="statement not covered" >    <span class="missing-if-branch" title="if path not taken" >I</span>if (exist) {</span>
@@ -431,15 +431,15 @@ const getPost = async (req: Request, res: Response) =&gt; {
 //   }
 // };
 &nbsp;
-const updatePost=async(req:Request,res:Response)=&gt;{
-  try {
-    const post=await Post.findById(req.params.id);
-    const updated = await Post.findByIdAndUpdate(req.params.id,{$set:{
+const updatePost=<span class="fstat-no" title="function not covered" >async(r</span>eq:Request,res:Response)=&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >  try {</span>
+    const post=<span class="cstat-no" title="statement not covered" >await Post.findById(req.params.id);</span>
+    const updated = <span class="cstat-no" title="statement not covered" >await Post.findByIdAndUpdate(req.params.id,{$set:{</span>
         title:req.body.title, 
         desc:req.body.desc,
         image:req.body.image,
       }},{new:true});
-      res.status(200).json({
+<span class="cstat-no" title="statement not covered" >      res.status(200).json({</span>
         status:"success",
         data:updated
       });
@@ -448,14 +448,14 @@ const updatePost=async(req:Request,res:Response)=&gt;{
       }
 }
 &nbsp;
-const deletePost = async (req: Request, res: Response) =&gt; {
-  try {
-    const post = await Post.findById(req.params.id);
-    try {
-      <span class="missing-if-branch" title="if path not taken" >I</span>if (post) {
+const deletePost = <span class="fstat-no" title="function not covered" >async (r</span>eq: Request, res: Response) =&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" > {</span></span>
+<span class="cstat-no" title="statement not covered" >  try {</span>
+    const post = <span class="cstat-no" title="statement not covered" >await Post.findById(req.params.id);</span>
+<span class="cstat-no" title="statement not covered" >    try {</span>
+<span class="cstat-no" title="statement not covered" >      <span class="missing-if-branch" title="if path not taken" >I</span>if (post) {</span>
 <span class="cstat-no" title="statement not covered" >        await post.deleteOne();</span>
       }
-      res.status(200).json({message: "Blog deleted"});
+<span class="cstat-no" title="statement not covered" >      res.status(200).json({message: "Blog deleted"});</span>
     } catch (err) {
 <span class="cstat-no" title="statement not covered" >      res.status(500).json(err);</span>
     }
@@ -526,7 +526,7 @@ export { createPost, getAllPost, getPost, updatePost, deletePost, Likes };
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-02-27T09:03:27.933Z
+                at 2024-02-27T12:35:42.425Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

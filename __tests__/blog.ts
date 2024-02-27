@@ -27,7 +27,6 @@ afterAll(async () => {
 // })
 
 const id = '65dc6fd4ef92b13cd7fe8c44';
-let token: string;
 describe("Logging and APIs", () => {
   const token: { token: string } = { token: '' };
   it("should login in", async () => {
@@ -120,6 +119,10 @@ describe("Logging and APIs", () => {
     .set('Authorization', 'Bearer '+ token.token)
     expect(show.status).toBe(200);
   });
+
+  // user
+
+
 
 });
 
