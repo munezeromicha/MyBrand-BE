@@ -1,9 +1,18 @@
+name: Node.js CI
+
+on:
+  pull_request:
+
 jobs:
   tests:
     runs-on: windows-latest
     strategy:
       matrix:
+
         node-version: [20.x]
+
+        node-version: [18.x]
+
 
     steps:
       - name: Checkout code
@@ -18,4 +27,7 @@ jobs:
         run: npm ci
 
       - name: Run tests
+
         run: npm run test:watch
+
+        run: npm test

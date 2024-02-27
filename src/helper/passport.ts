@@ -3,7 +3,9 @@ import passport from "passport";
 import { Request } from "express";
 import bcrypt from "bcrypt";
 import UserModel, { IUser } from "../models/user";
+import { error } from "console";
 const localStrategy = require("passport-local").Strategy;
+
 
 passport.use(
   "signup",
@@ -20,8 +22,15 @@ passport.use(
       done: (error: any, user?: IUser | false) => void
     ) => {
       try {
+        
+        if(req.body.username === ""){
+          const wrong = "username field is required";
+          return done(wrong);
+        }
         const username = req.body?.username;
         const user = await UserModel.create({ email, password, username });
+
+
         return done(null, user);
       } catch (error) {
         done(error);
@@ -62,4 +71,5 @@ passport.use(
     }
   )
 );
+
 export default passport;
