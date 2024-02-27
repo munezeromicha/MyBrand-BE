@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1709037342447" clover="3.2.0">
-  <project timestamp="1709037342447" name="All files">
+<coverage generated="1709042416640" clover="3.2.0">
+  <project timestamp="1709042416640" name="All files">
     <metrics statements="308" coveredstatements="198" conditionals="39" coveredconditionals="10" methods="55" coveredmethods="25" elements="402" coveredelements="233" complexity="0" loc="308" ncloc="308" packages="8" files="20" classes="20"/>
     <package name="src">
       <metrics statements="27" coveredstatements="26" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
@@ -339,13 +339,13 @@
         <line num="3" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
         <line num="7" count="1" type="stmt"/>
-        <line num="8" count="1" type="stmt"/>
         <line num="9" count="1" type="stmt"/>
-        <line num="10" count="1" type="stmt"/>
-        <line num="11" count="1" type="stmt"/>
-        <line num="12" count="1" type="stmt"/>
-        <line num="13" count="1" type="stmt"/>
-        <line num="17" count="1" type="stmt"/>
+        <line num="38" count="1" type="stmt"/>
+        <line num="39" count="1" type="stmt"/>
+        <line num="40" count="1" type="stmt"/>
+        <line num="41" count="1" type="stmt"/>
+        <line num="42" count="1" type="stmt"/>
+        <line num="46" count="1" type="stmt"/>
       </file>
       <file name="commentRoutes.ts" path="C:\Users\Michael-Dev\Desktop\Andela\Backend\MyBrand-BE\Typescript-BE\MyBrand-BE\src\routes\commentRoutes.ts">
         <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
