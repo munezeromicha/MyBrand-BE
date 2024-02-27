@@ -39,5 +39,5 @@ workflows:
             - build_and_test # only deploy if the build_and_test job has completed
           filters:
             branches:
-              only: main # only deploy when on main
+              only: circleci-testing # only deploy when on main
 
