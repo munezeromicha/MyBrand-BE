@@ -30,8 +30,7 @@ const getComment = async (req: Request, res: Response) => {
     // if (!blog) {
     //   return res.status(404).send({ error: "Not found" });
     // }
-    const comment = await Comment.findOne({_id: blogId });
-    res.status(200).json(comment);
+    const comment = await Comment.findOne({ blog:blogId });
     if (comment) {
       return res.status(200).json(comment);
   } else {
@@ -44,7 +43,9 @@ const getComment = async (req: Request, res: Response) => {
 
 const readAllComments = async (req: Request, res: Response) => {
   try {
+    console.log('comment');
     const comment = await Comment.find();
+    
     res.status(200).json(comment);
 } catch (error) {
     res.status(404).json('The Comments were not found');
@@ -65,8 +66,8 @@ const updateComment = async (req: Request, res: Response) => {
 
 const deleteComment = async (req: Request, res: Response) => {
   try {
-    await Comment.findByIdAndDelete(req.params.id);
-    res.status(200).json("Comment Deleted");
+    await Comment.deleteOne({_id: req.params.id});
+    res.status(200).json({message:"Comment Deleted"});
   } catch (error) {
     res.status(404).json("Not found");
   }
