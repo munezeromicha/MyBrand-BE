@@ -22,7 +22,7 @@ jobs:
 
 
   deploy: 
-    executor: heroku/default
+    executor: node/default
     steps:
       - attach_workspace:
           at: ~/project
