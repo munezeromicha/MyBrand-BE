@@ -2,7 +2,7 @@ import { Router } from "express";
 import Passport from "../helper/delay";
 import * as verify from "../controllers/user.controller";
 import passport from "../helper/passport";
-import { isAdmin, isAuthenticated } from "../middleware/adminAuthorize";
+
 
 const router = Router();
 

@@ -3,7 +3,7 @@ import cloudinary from "../helper/cloudinary";
 import Blog from '../models/blog'
 import Post, { Ipost } from "../models/blog";
 import { postSchema } from "../utils/validate";
-// import { exist } from "joi";
+
 
 const createPost = async (req: Request, res: Response) => {
   try {
@@ -40,25 +40,44 @@ const getPost = async (req: Request, res: Response) => {
   }
 };
 
-const updatePost = async (req: Request, res: Response) => {
+// const updatePost = async (req: Request, res: Response) => {
+//   try {
+//     const post = await Post.findById(req.params.id);
+//     const updated = await Post.findByIdAndUpdate(
+//       req.params.id,
+//       {
+//         $set: {
+//           title: req.body.title,
+//           content: req.body.content,
+//           image: req.body.image,
+//         },
+//       },
+//       { new: true }
+//     );
+//     res.status(200).json({
+//       updated
+//     });
+//   } catch (error) {
+//     res.status(500).json({ status: "error", error: "hello" });
+//   }
+// };
+
+const updatePost=async(req:Request,res:Response)=>{
   try {
-    const post = await Post.findById(req.params.id);
-    const updated = await Post.findByIdAndUpdate(
-      req.params.id,
-      {
-        $set: {
-          title: req.body.title,
-          content: req.body.content,
-          image: req.body.image,
-        },
-      },
-      { new: true }
-    );
-    res.status(200).send("updatedBlog");
-  } catch (error) {
-    res.status(500).json({ status: "error", error: "hello" });
-  }
-};
+    const post=await Post.findById(req.params.id);
+    const updated = await Post.findByIdAndUpdate(req.params.id,{$set:{
+        title:req.body.title, 
+        desc:req.body.desc,
+        image:req.body.image,
+      }},{new:true});
+      res.status(200).json({
+        status:"success",
+        data:updated
+      });
+    } catch (error) {
+        res.status(500).json({status:"error", error: 'hello' });
+      }
+}
 
 const deletePost = async (req: Request, res: Response) => {
   try {
@@ -67,7 +86,7 @@ const deletePost = async (req: Request, res: Response) => {
       if (post) {
         await post.deleteOne();
       }
-      res.status(200).json("Deleted");
+      res.status(200).json({message: "Blog deleted"});
     } catch (err) {
       res.status(500).json(err);
     }

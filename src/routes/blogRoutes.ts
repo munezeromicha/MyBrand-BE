@@ -1,15 +1,15 @@
 import { Router } from "express"
 import { createPost, getAllPost, getPost, updatePost, deletePost, Likes} from "../controllers/blogController"
 import upload from "../helper/multer"
-import { isAdmin, isAuthenticated } from "../middleware/adminAuthorize";
-import auth from "../middleware/auth"
+import { checkAdmin, checkAuthenticated } from "../middleware/adminAuthorize";
+
 
 const router = Router()
-router.post('/blogs',isAuthenticated,isAdmin,upload.single('image'),createPost)
+router.post('/blogs',checkAuthenticated,checkAdmin,upload.single('image'),createPost)
 router.get('/blogs/:id',getPost)
 router.get('/blogs',getAllPost)
-router.patch('/blogs/:id', isAuthenticated,isAdmin,updatePost)
-router.delete('/blogs/:id',isAuthenticated,isAdmin,deletePost)
+router.patch('/blogs/:id', checkAuthenticated,checkAdmin,updatePost)
+router.delete('/blogs/:id',checkAuthenticated,checkAdmin,deletePost)
 router.post("/blogs/:id/likes",Likes)
 
 
