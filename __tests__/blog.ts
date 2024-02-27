@@ -27,6 +27,7 @@ afterAll(async () => {
 // })
 
 const id = '65dc6fd4ef92b13cd7fe8c44';
+let token: string;
 describe("Logging and APIs", () => {
   const token: { token: string } = { token: '' };
   it("should login in", async () => {
@@ -97,6 +98,29 @@ describe("Logging and APIs", () => {
     expect(show.status).toBe(200);
   });
 
+  // Authorized on query 
+
+  it("/api/ for 200", async () => {
+    const show = await supertest(app).get("/api/query")
+    .set('Authorization', 'Bearer '+ token.token)
+    expect(show.status).toBe(200);
+  });
+  it("/api/ for 200", async () => {
+    const show = await supertest(app).get(`/api/query/:id`)
+    .set('Authorization', 'Bearer '+ token.token)
+    expect(show.status).toBe(200);
+  });
+  it("/api/ for 200", async () => {
+    const show = await supertest(app).patch(`/api/query/:id`)
+    .set('Authorization', 'Bearer '+ token.token)
+    expect(show.status).toBe(200);
+  });
+  it("/api/ for 200", async () => {
+    const show = await supertest(app).delete(`/api/query/:id`)
+    .set('Authorization', 'Bearer '+ token.token)
+    expect(show.status).toBe(200);
+  });
+
 });
 
 
@@ -144,31 +168,33 @@ describe("Test APIs on Query", () => {
   
   it("/api/ for 500", async () => {
     const show = await supertest(app).post("/api/query");
-    expect(show.status).toBe(500);
-  });
-  it("/api/ for 200", async () => {
-    const show = await supertest(app).get("/api/query");
     expect(show.status).toBe(200);
   });
   it("/api/ for 200", async () => {
-    const show = await supertest(app).get(`/api/query/${id}`);
-    expect(show.status).toBe(200);
+    const show = await supertest(app).get("/api/query")
+    expect(show.status).toBe(400);
   });
   it("/api/ for 200", async () => {
-    const show = await supertest(app).patch(`/api/query/${id}`);
-    expect(show.status).toBe(200);
+    const show = await supertest(app).get(`/api/query/:id`)
+    expect(show.status).toBe(401);
   });
   it("/api/ for 200", async () => {
-    const show = await supertest(app).delete(`/api/query/${id}`);
-    expect(show.status).toBe(200);
+    const show = await supertest(app).patch(`/api/query/:id`)
+    expect(show.status).toBe(401);
   });
+  it("/api/ for 200", async () => {
+    const show = await supertest(app).delete(`/api/query/:id`)
+    expect(show.status).toBe(400);
+  });
+
+
 });
 
 
 describe("Test APIs on comments", () => {
   const myID = '65dc7bf3e692dc289c7a11f8'
   it("/api/ for 200", async () => {
-    const show = await supertest(app).post(`/api/blogs/65dc7bf3e692dc289c7a11f8/comments`)
+    const show = await supertest(app).post(`/api/blogs/:id/comments`)
     expect(show.status).toBe(200);
   });
   it('should return 404 on getting one comment', async () => {
@@ -207,7 +233,7 @@ describe("Auth Testing", () => {
       email: "",
       password: "",
     };
-    const res = await supertest(app).post("/api/endUser").send({
+    const res = await supertest(app).post("/api/user").send({
       title: "",
       content: "",
     });

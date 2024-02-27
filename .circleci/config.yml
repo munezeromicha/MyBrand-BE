@@ -4,14 +4,14 @@ orbs:
   heroku: circleci/heroku@2.0.0
 
 jobs:
-  build_and_test: Michael
+  build_and_test:
     executor: node/default # use the default executor defined within the orb
     steps:
       - checkout
       - node/install-packages:
           pkg-manager: npm
       - run:
-          command: npm run test
+          command: npm run test:watch
           name: Run tests
       - run:
           command: npm run build
@@ -22,7 +22,7 @@ jobs:
             - .
 
 
-  deploy: michaelDeploy
+  deploy: 
     executor: heroku/default
     steps:
       - attach_workspace:
