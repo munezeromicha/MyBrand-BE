@@ -47,25 +47,25 @@ describe("Logging and APIs", () => {
   describe("user login", ()=>{
     it("should login in", async () => {
         const response = await supertest(app).post("/api/login")
-        .send({ email: "michael@gmail.com", password: 'Munezero2024!' });
+        .send({ email: "ntaganira@gmail.com", password: 'Ntaganira2024!' });
         token.token = response.body.token;
         expect(response.status).toBe(200);
       });
       
       it("user not found", async () => {
         const response = await supertest(app).post("/api/login")
-        .send({ email: "micyyy@gmail.com", password: 'Munezero2024!' });
+        .send({ email: "ntagyyy@gmail.com", password: 'Ntaganira2024!' });
         expect(response.status).toBe(404);
       });
       it("user not found without email", async () => {
         const response = await supertest(app).post("/api/login")
-        .send({ email: "", password: 'Munezero2024!' });
+        .send({ email: "", password: 'Ntaganira2024!' });
         expect(response.status).toBe(404);
         expect(response.body.message).toContain("Missing credentials")
       });
       it("user not found without email", async () => {
         const response = await supertest(app).post("/api/login")
-        .send({ email: "michael@gmail.com", password: 'Munezer' });
+        .send({ email: "Ntaganira@gmail.com", password: 'Ntaganir' });
         expect(response.status).toBe(404);
         expect(response.body.message).toContain("Invalid Password")
       });
@@ -132,7 +132,7 @@ describe("Logging and APIs", () => {
   it("commenting on single blogs", async () => {
     const show = await supertest(app).post(`/api/blogs/${identify}/comments`).send({
       "name": "rwema",
-      "email":"rwema@gmail",
+      "email":"rwema@gmail.com",
       "idea": "well done!"
     })
     expect(show.status).toBe(201);
@@ -149,7 +149,7 @@ describe("Logging and APIs", () => {
   it("commenting on single blogs", async () => {
     const show = await supertest(app).post(`/api/blogs/65de3228ae9ec95d74123f11000/comments`).send({
       "name": "rwema",
-      "email":"rwema@gmail",
+      "email":"rwema@gmail.com",
       "idea": "well done!"
     })
     expect(show.status).toBe(500);
