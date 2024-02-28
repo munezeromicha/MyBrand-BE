@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1709103278776" clover="3.2.0">
-  <project timestamp="1709103278776" name="All files">
-    <metrics statements="303" coveredstatements="232" conditionals="40" coveredconditionals="15" methods="54" coveredmethods="41" elements="397" coveredelements="288" complexity="0" loc="303" ncloc="303" packages="7" files="20" classes="20"/>
+<coverage generated="1709105338882" clover="3.2.0">
+  <project timestamp="1709105338882" name="All files">
+    <metrics statements="301" coveredstatements="230" conditionals="40" coveredconditionals="15" methods="54" coveredmethods="41" elements="395" coveredelements="286" complexity="0" loc="301" ncloc="301" packages="7" files="20" classes="20"/>
     <package name="src">
       <metrics statements="22" coveredstatements="22" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="index.ts" path="C:\Users\Michael-Dev\Desktop\Andela\Backend\MyBrand-BE\Typescript-BE\MyBrand-BE\src\index.ts">
@@ -198,12 +198,10 @@
       </file>
     </package>
     <package name="src.helper">
-      <metrics statements="50" coveredstatements="40" conditionals="11" coveredconditionals="5" methods="7" coveredmethods="6"/>
+      <metrics statements="48" coveredstatements="38" conditionals="11" coveredconditionals="5" methods="7" coveredmethods="6"/>
       <file name="cloudinary.ts" path="C:\Users\Michael-Dev\Desktop\Andela\Backend\MyBrand-BE\Typescript-BE\MyBrand-BE\src\helper\cloudinary.ts">
-        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
-        <line num="2" count="1" type="stmt"/>
-        <line num="4" count="1" type="stmt"/>
         <line num="6" count="1" type="stmt"/>
         <line num="12" count="1" type="stmt"/>
       </file>

@@ -1,27 +1,34 @@
 version: 2.1
-#orbs
-orbs:
-  node: circleci/node@4.1.0
-  # coveralls: coveralls/coveralls@2.2.1
-
-workflows:
-  build:
-    jobs:
-      - build
 
 jobs:
   build:
     docker:
-      - image: cimg/node:16.13.2
+      - image: circleci/node:latest
+    working_directory: ~/app
     steps:
       - checkout
+      # Install MongoDB
       - run:
-          name: Set up Node.js
+          name: Install MongoDB
           command: |
-            echo "##[group] Installing Node.js"
-            curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -
-            sudo apt-get install -y nodejs
-            echo "##[endgroup]"
-      - run: npm ci
+            sudo apt-get update
+            sudo apt-get install -y mongodb
+            mkdir -p ~/mongodb/data
+            mongod --dbpath ~/mongodb/data --fork --logpath ~/mongodb/log.txt
+            sleep 10 # wait for MongoDB to start
+
+      # Install dependencies
+      - run: npm install
+
+      # Run tests
       - run: npm test
-      # - coveralls/upload
+
+  # Define services (MongoDB)
+  services:
+    mongodb:
+      image: mongo:latest
+      ports:
+        - "27017:27017"
+      environment:
+        MONGO_INITDB_ROOT_USERNAME: micka
+        MONGO_INITDB_ROOT_PASSWORD: 
