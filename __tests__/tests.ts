@@ -10,7 +10,7 @@ dotenv.config();
 const DB_URL = process.env.MONGODB_URL_TEST || "";
 
 beforeAll(async () => {
-  await mongoose.connect('mongodb://localhost:27017/micka');
+  await mongoose.connect('mongodb+srv://munezeromicha2000:Munezero2024@cluster0.7mpb0qo.mongodb.net/');
 },40000);
 
 afterAll(async () => {
