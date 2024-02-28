@@ -7,15 +7,12 @@ jobs:
     working_directory: ~/app
     steps:
       - checkout
-      # Install MongoDB
+      # Install MongoDB Compass
       - run:
-          name: Install MongoDB
+          name: Install MongoDB Compass
           command: |
-            sudo apt-get update
-            sudo apt-get install -y mongodb
-            mkdir -p ~/mongodb/data
-            mongod --dbpath ~/mongodb/data --fork --logpath ~/mongodb/log.txt
-            sleep 10 # wait for MongoDB to start
+            wget https://downloads.mongodb.com/compass/mongodb-compass_1.28.1_amd64.deb
+            sudo dpkg -i mongodb-compass_1.28.1_amd64.deb
 
       # Install dependencies
       - run: npm install
@@ -23,12 +20,9 @@ jobs:
       # Run tests
       - run: npm test
 
-  # Define services (MongoDB)
+  # Define services (MongoDB Compass)
   services:
-    mongodb:
-      image: mongo:latest
+    mongodb-compass:
+      image: circleci/mongo:4.4.8
       ports:
         - "27017:27017"
-      environment:
-        MONGO_INITDB_ROOT_USERNAME: micka
-        MONGO_INITDB_ROOT_PASSWORD: 
