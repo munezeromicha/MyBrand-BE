@@ -2,10 +2,10 @@
 
 
 
-##MyBrand-BE
+**MyBrand-BE**
 Welcome to MyBrand-BE! This repository contains the full backend project built with Node.js, Express.js, MongoDB, CircleCI, Swagger, and Jest for testing. MyBrand-BE focuses on providing a robust backend infrastructure for a web application.
 
-###Features
+**Features**
 Express.js: Utilizes the powerful Express.js framework for handling HTTP requests, routing, and middleware.
 MongoDB: Integrates MongoDB for data storage, providing flexibility and scalability for handling various types of data.
 CircleCI: Implements Continuous Integration/Continuous Deployment (CI/CD) with CircleCI to automate the testing and deployment process.
@@ -13,7 +13,7 @@ Swagger: Generates API documentation using Swagger, making it easy to understand
 Jest: Implements unit and integration tests using Jest, ensuring the reliability and correctness of the backend code.
 Other Packages: Utilizes various npm packages for authentication, validation, logging, and other functionalities.
 
-##Getting Started
+**Getting Started**
 To get started with MyBrand-BE, follow these steps:
 
 Clone the Repository: Clone this repository to your local machine using the following command:
@@ -33,18 +33,18 @@ npm start
 Explore APIs: Access the Swagger documentation to explore and test the backend APIs. Open your browser and navigate to http://localhost:your-port/api-docs.
 
 
-##Testing
+**Testing**
 
 MyBrand-BE includes a comprehensive test suite to ensure the reliability and correctness of the backend code. To run the tests, use the following command:
 npm test
 
-##Contributing
+**Contributing**
 Contributions are welcome! If you have any suggestions, improvements, or bug fixes, feel free to open an issue or submit a pull request.
 
-##License
+**License**
 This project is licensed under the MIT License.
 
-##Contact
+**Contact**
 If you have any questions or need further assistance, feel free to contact the project maintainer:
 
 Email: munezeromicha@gmail.com
