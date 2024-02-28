@@ -4,9 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MyBrand-BE</title>
+
 </head>
 <body>
 
@@ -50,7 +48,6 @@
 
 <h2>License</h2>
 
-<p>This project is licensed under the <a href="LICENSE">MIT License</a>.</p>
 
 <h2>Contact</h2>
 
