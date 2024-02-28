@@ -1,28 +1,27 @@
 version: 2.1
+#orbs
+orbs:
+  node: circleci/node@4.1.0
+  # coveralls: coveralls/coveralls@2.2.1
+
+workflows:
+  build:
+    jobs:
+      - build
 
 jobs:
   build:
     docker:
-      - image: circleci/node:latest
-    working_directory: ~/app
+      - image: cimg/node:16.13.2
     steps:
       - checkout
-      # Install MongoDB Compass
       - run:
-          name: Install MongoDB Compass
+          name: Set up Node.js
           command: |
-            wget https://downloads.mongodb.com/compass/mongodb-compass_1.28.1_amd64.deb
-            sudo dpkg -i mongodb-compass_1.28.1_amd64.deb
-
-      # Install dependencies
-      - run: npm install
-
-      # Run tests
+            echo "##[group] Installing Node.js"
+            curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+            sudo apt-get install -y nodejs
+            echo "##[endgroup]"
+      - run: npm ci
       - run: npm test
-
-  # Define services (MongoDB Compass)
-  services:
-    mongodb-compass:
-      image: circleci/mongo:4.4.8
-      ports:
-        - "27017:27017"
+      # - coveralls/upload
