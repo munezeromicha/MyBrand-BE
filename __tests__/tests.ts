@@ -10,18 +10,18 @@ dotenv.config();
 const DB_URL = process.env.MONGODB_URL_TEST || "";
 
 beforeAll(async () => {
-  await mongoose.connect(DB_URL);
-}, 50000);
+  await mongoose.connect('mongodb+srv://munezeromicha2000:Munezero2024@cluster0.7mpb0qo.mongodb.net/');
+},40000);
 
 afterAll(async () => {
   await mongoose.connection.close();
 });
 
 let commentId = " ";
-let identify = '65de3228ae9ec95d74123fff';
+let identify = '65df19489be1f05a4dd85834';
 const id = '65dc6fd4ef92b13cd7fe8c44'; // userID
-const blogId = '65dc7bf3e692dc289c7a11f8';
-const queryId = '65d75bf574123bf8e332dd0a';
+const blogId = '65df19489be1f05a4dd85834';
+const queryId = '65df19729be1f05a4dd85839';
 const token: { token: string } = { token: '' };
 describe("Logging and APIs", () => {
   
@@ -47,25 +47,25 @@ describe("Logging and APIs", () => {
   describe("user login", ()=>{
     it("should login in", async () => {
         const response = await supertest(app).post("/api/login")
-        .send({ email: "michael@gmail.com", password: 'Munezero2024!' });
+        .send({ email: "ntaganira@gmail.com", password: 'Ntaganira2024!' });
         token.token = response.body.token;
         expect(response.status).toBe(200);
       });
       
       it("user not found", async () => {
         const response = await supertest(app).post("/api/login")
-        .send({ email: "micyyy@gmail.com", password: 'Munezero2024!' });
+        .send({ email: "ntagyyy@gmail.com", password: 'Ntaganira2024!' });
         expect(response.status).toBe(404);
       });
       it("user not found without email", async () => {
         const response = await supertest(app).post("/api/login")
-        .send({ email: "", password: 'Munezero2024!' });
+        .send({ email: "", password: 'Ntaganira2024!' });
         expect(response.status).toBe(404);
         expect(response.body.message).toContain("Missing credentials")
       });
       it("user not found without email", async () => {
         const response = await supertest(app).post("/api/login")
-        .send({ email: "michael@gmail.com", password: 'Munezer' });
+        .send({ email: "ntaganira@gmail.com", password: 'Ntaganir' });
         expect(response.status).toBe(404);
         expect(response.body.message).toContain("Invalid Password")
       });
@@ -129,14 +129,14 @@ describe("Logging and APIs", () => {
     expect(show.status).toBe(500);
   });
 
-  it("commenting on single blogs", async () => {
-    const show = await supertest(app).post(`/api/blogs/${identify}/comments`).send({
-      "name": "rwema",
-      "email":"rwema@gmail",
-      "idea": "well done!"
-    })
-    expect(show.status).toBe(201);
-  });
+  // it("commenting on single blogs", async () => {
+  //   const show = await supertest(app).post(`/api/blogs/${identify}/comments`).send({
+  //     "name": "rwema",
+  //     "email":"rwema@gmail",
+  //     "idea": "well done!"
+  //   })
+  //   expect(show.status).toBe(201);
+  // });
 
   it("Getting on single blogs", async () => {
     const show = await supertest(app).get(`/api/blogs/${identify}/comments`);

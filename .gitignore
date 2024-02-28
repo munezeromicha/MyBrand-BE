@@ -1,7 +1,5 @@
 /node_modules
-/.env
 /Dir
-/tsconfig.json
 /michael.txt
 /michael.txt.pub
 /coverage
