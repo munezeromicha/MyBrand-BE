@@ -23,7 +23,7 @@ Clone the Repository: Clone this repository to your local machine using the foll
 
 
 
-git clone https://github.com/your-username/MyBrand-BE.git
+git clone https://github.com/munezeromicha/MyBrand-BE.git
 Install Dependencies: Navigate to the project directory and install the dependencies using npm or yarn:
 
 
@@ -33,7 +33,7 @@ Set Up Environment Variables: Create a .env file in the root directory of the pr
 
 Start the Server: Start the backend server using the following command:
 npm start
-Explore APIs: Access the Swagger documentation to explore and test the backend APIs. Open your browser and navigate to http://localhost:your-port/api-docs.
+Explore APIs: Access the Swagger documentation to explore and test the backend APIs. Open your browser and navigate to http://localhost:9000/api-docs.
 
 
 **Testing**
