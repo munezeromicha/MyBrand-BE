@@ -11,7 +11,7 @@ const DB_URL = process.env.MONGODB_URL_TEST || "";
 
 beforeAll(async () => {
   await mongoose.connect('mongodb://localhost:27017/micka');
-});
+},4000);
 
 afterAll(async () => {
   await mongoose.connection.close();
