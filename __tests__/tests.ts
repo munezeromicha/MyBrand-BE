@@ -65,7 +65,7 @@ describe("Logging and APIs", () => {
       });
       it("user not found without email", async () => {
         const response = await supertest(app).post("/api/login")
-        .send({ email: "Ntaganira@gmail.com", password: 'Ntaganir' });
+        .send({ email: "ntaganira@gmail.com", password: 'Ntaganir' });
         expect(response.status).toBe(404);
         expect(response.body.message).toContain("Invalid Password")
       });
@@ -132,7 +132,7 @@ describe("Logging and APIs", () => {
   it("commenting on single blogs", async () => {
     const show = await supertest(app).post(`/api/blogs/${identify}/comments`).send({
       "name": "rwema",
-      "email":"rwema@gmail.com",
+      "email":"rwema@gmail",
       "idea": "well done!"
     })
     expect(show.status).toBe(201);
@@ -149,7 +149,7 @@ describe("Logging and APIs", () => {
   it("commenting on single blogs", async () => {
     const show = await supertest(app).post(`/api/blogs/65de3228ae9ec95d74123f11000/comments`).send({
       "name": "rwema",
-      "email":"rwema@gmail.com",
+      "email":"rwema@gmail",
       "idea": "well done!"
     })
     expect(show.status).toBe(500);
