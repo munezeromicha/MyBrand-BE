@@ -54,8 +54,8 @@
 <p>If you have any questions or need further assistance, feel free to contact the project maintainer:</p>
 
 <ul>
-  <li>Email: <a href="mailto:munezeromicha@gmail.com">your-email@example.com</a></li>
-  <li>GitHub: <a href="https://github.com/munezeromicha">your-username</a></li>
+  <li>Email: <a href="mailto:munezeromicha@gmail.com">My email</a></li>
+  <li>GitHub: <a href="https://github.com/munezeromicha">Github Link</a></li>
 </ul>
 
 </body>
