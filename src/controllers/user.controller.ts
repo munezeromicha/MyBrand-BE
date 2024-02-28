@@ -31,7 +31,7 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
             if (error) return next(error);
 
             const body = { _id: user._id, email: user.email, role: user.role };
-            const token = jwt.sign({ user: body }, 'TOP_SECRET', {expiresIn: '1h'});
+            const token = jwt.sign({ user: body }, 'TOP_SECRET', );
             const Query = info.message;
 
             return res.status(200).json({ token, Query });
