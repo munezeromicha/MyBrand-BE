@@ -18,10 +18,10 @@ afterAll(async () => {
 });
 
 let commentId = " ";
-let identify = '65deff08b45c61c9cb794310';
+let identify = '65deff75b45c61c9cb794313';
 const id = '65dc6fd4ef92b13cd7fe8c44'; // userID
-const blogId = '65deff08b45c61c9cb794310';
-const queryId = '65defee5b45c61c9cb79430d';
+const blogId = '65deff75b45c61c9cb794313';
+const queryId = '65deff95b45c61c9cb794315';
 const token: { token: string } = { token: '' };
 describe("Logging and APIs", () => {
   
