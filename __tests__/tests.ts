@@ -18,10 +18,10 @@ afterAll(async () => {
 });
 
 let commentId = " ";
-let identify = '65df19489be1f05a4dd85834';
+let identify = '65e0019f03bc94a233eb870a';
 const id = '65dc6fd4ef92b13cd7fe8c44'; // userID
-const blogId = '65df19489be1f05a4dd85834';
-const queryId = '65df19729be1f05a4dd85839';
+const blogId = '65e0019f03bc94a233eb870a';
+const queryId = '65e001da03bc94a233eb870f';
 const token: { token: string } = { token: '' };
 describe("Logging and APIs", () => {
   
@@ -110,12 +110,7 @@ describe("Logging and APIs", () => {
     expect(show.status).toBe(500);
   });
 
-  it('when you delete blog with permission', async () => {
-    const res = await supertest(app)
-   .delete(`/api/blogs/${blogId}`)
-   .set('Authorization', 'Bearer '+ token.token)
-    expect(res.status).toBe(200);
-  });
+
 
   it('when you have permission', async () => {
     const res = await supertest(app)
@@ -129,16 +124,16 @@ describe("Logging and APIs", () => {
     expect(show.status).toBe(500);
   });
 
-  // it("commenting on single blogs", async () => {
-  //   const show = await supertest(app).post(`/api/blogs/${identify}/comments`).send({
-  //     "name": "rwema",
-  //     "email":"rwema@gmail",
-  //     "idea": "well done!"
-  //   })
-  //   expect(show.status).toBe(201);
-  // });
+  it("commenting on single blogs", async () => {
+    const show = await supertest(app).post(`/api/blogs/${identify}/comments`).send({
+      "name": "rwema",
+      "email":"rwema@gmail.com",
+      "idea": "well done!"
+    })
+    expect(show.status).toBe(201);
+  });
 
-  it("Getting on single blogs", async () => {
+  it("Getting comment on single blogs", async () => {
     const show = await supertest(app).get(`/api/blogs/${identify}/comments`);
     // console.log(show.body._id);
     expect(show.status).toBe(200);
@@ -155,14 +150,23 @@ describe("Logging and APIs", () => {
     expect(show.status).toBe(500);
   });
 
-  it("Delete comment", async()=>{
-    const show = await supertest(app).delete(`/api/comments/${commentId}`);
-    expect(show.status).toBe(200)
-  })
+
   it("Delete comment", async()=>{
     const show = await supertest(app).delete(`/api/comments/6687gkjbkkv`);
     expect(show.status).toBe(404)
   })
+  it("Delete comment", async()=>{
+    const show = await supertest(app).delete(`/api/comments/${commentId}`);
+    expect(show.status).toBe(200)
+  })
+
+
+  it('when you delete blog with permission', async () => {
+    const res = await supertest(app)
+   .delete(`/api/blogs/${blogId}`)
+   .set('Authorization', 'Bearer '+ token.token)
+    expect(res.status).toBe(200);
+  });
 
 });
 
@@ -187,3 +191,4 @@ it("Getting all queries", async () => {
 //   describe('Lets test the querie', ()=>{
 //     it('creating ')
 //   })
+

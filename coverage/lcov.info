@@ -100,7 +100,7 @@ DA:83,1
 DA:84,1
 DA:85,1
 DA:86,1
-DA:87,0
+DA:87,1
 DA:89,1
 DA:91,0
 DA:94,0
@@ -121,14 +121,14 @@ DA:119,0
 DA:121,0
 DA:152,1
 LF:54
-LH:31
+LH:32
 BRDA:11,0,0,1
 BRDA:15,1,0,0
 BRDA:19,2,0,0
-BRDA:86,3,0,0
+BRDA:86,3,0,1
 BRDA:113,4,0,0
 BRF:5
-BRH:1
+BRH:2
 end_of_record
 TN:
 SF:src\controllers\commentController.ts
