@@ -1,0 +1,509 @@
+{
+    "openapi": "3.0.0",
+
+    "info": {
+        "title": "MyBrand-BE",
+        "description": "Swagger Documentation"
+    },
+
+    "servers": [
+        {
+            "url": "http://localhost:9000/api",
+            "description": "Server"
+        },
+        {
+            "url":"https://mybrand-be-6rxz.onrender.com/",
+            "description":"render development server"
+        }
+    ],
+
+    "components": {
+
+      "securitySchemes": {
+            "BearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+      },
+
+      "schemas": {
+
+        "BlogPost": {
+          "type": "object",
+          "properties": {
+            "title": {"type": "string"},
+            "content": {"type": "string"},
+            "image": {"type": "string","format": "binary" }
+          }
+        },
+        "Comment":{
+            "type": "object",
+            "properties":{
+                "name":{"type":"string"},
+                "email":{"type":"string"},
+                "idea":{"type":"string"}
+            }
+        },
+        "endUser":{
+            "type":"object",
+            "properties":{
+                "username":{"type":"string"},
+                "email":{"type":"string"},
+                "password":{"type":"string"}
+            },
+            "required":["username","password"]
+        },
+        "queries":{
+            "type":"object",
+            "properties":{
+                "name":{"type":"string"},
+                "email":{"type":"string"},
+                "content":{"type":"string"}
+            }
+        },
+        "Likes":{
+            "type":"object",
+            "properties":{
+                "likes":{"type":"integer"}
+            }
+        }
+      }
+    },
+
+    "paths": {
+        
+
+            "/signup": {
+                "post":{
+                    "tags":["User"],
+                    "summary":"where to sign up as user by default",
+                    "requestBody":{
+                        "required":true,
+                        "content": {
+                            "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/endUser"
+                            }
+                            }
+                        }
+                    },
+                    "responses":{
+                        "200":{
+                            "description":"User created successfully",
+                            "content": {
+                                "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/endUser"
+                                }
+                                }
+                            }
+                        },
+                        "404":{"description":"Status: User not found"},
+                        "401":{"description":"Status: Incorrect password"},
+                        "500":{"description":"Status: Internal Server Error"}
+                    }
+                }
+
+            },
+
+            "/login": {
+                "post":{
+                    "tags":["User"],
+                    "summary":"Login as a user",
+
+                    "requestBody":{
+                        "required":true,
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/endUser"
+                                }
+                            }
+                        }
+                    },
+
+                    "responses":{
+                        "200":{
+                            "description":"Signed in successfully",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/User"
+                                    }
+                                }
+                            }
+                        },
+                        "404":{"description":"status: User not found"},
+                        "401":{"description":"status: Incorrect password"},
+                        "500":{"description":"status: Internal Server Error"}
+                    }
+                }
+
+            },
+    
+            "/blogs": {
+
+
+                "post": {
+                "tags": ["Blogs"],
+                "summary": "Here the authorized user allowed to add a new blog",
+
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                            "$ref": "#/components/schemas/BlogPost"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                    "description": "Blog added!",
+                    "content": {
+                        "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/BlogPost"
+                        }
+                        }
+                    }
+                    },
+                    "401": {"description": "Unauthorized to post"},
+                    "403": {"description": "File not found"},
+                    "409": { "description": "Title already exists"},
+                    "500": {"description": "Internal Server Error"}
+                }
+                },
+
+                "get": {
+                    "tags": ["Blogs"],
+                    "summary": "Getting all Blogs here!",
+                    "responses": {
+                        "200": {"description": "OK",
+                        "content": {
+                            "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                "status": {"type": "string" },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                    "$ref": "#/components/schemas/BlogPost"
+                                    }
+                                }
+                                }
+                            },
+                            "example": {
+                                "status": "favorable outcome",
+                                "data": []
+                            }
+                            }
+                        }
+                        }
+                    }
+                }
+            },     
+            "/{id}/blogs": {
+                    "get": {
+                        "tags": ["Blogs"],
+                        "summary": "get one blog by using id",
+                        "parameters": [
+                                {
+                                    "name": "id",
+                                    "in": "path",
+                                    "description": "blog id",
+                                    "schema": {
+                                        "type": "string"
+                                    }
+                                }
+                            ],
+                        "responses": {
+                                "200": {
+                                    "description": "Blog found",
+                                    "content": {
+                                        "application/json": {
+                                            "schema": {
+                                                "$ref": "#/components/schemas/BlogPost"
+                                            }
+                                        }
+                                    }
+                                },
+                                "404": {"description": "Blog not found"},
+                                "500": {"description": "Internal Server Error"}
+                            }
+                    },
+                    "delete":{
+                        "tags":["Blogs"],
+                        "summary": "Deleting a blog from the database",
+                        "security": [
+                            {
+                            "BearerAuth": []
+                            }
+                        ],
+
+                        "parameters": [
+                            {
+                                "name": "id",
+                                "in": "path",
+                                "description": "blog id",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        ],
+
+                        "responses":{
+                            "200":{"description":"Blog deleted"},
+                            "404":{"description":"Blog not found"},
+                            "500":{"description":"Internal Server Error"}
+                        }
+
+                    },
+
+                    "patch":{
+                            "tags":["Blogs"],
+                            "summary":"Updating a blog store in the database!",
+                            "security": [
+                                {
+                                "BearerAuth": []
+                                }
+                            ],
+                            "parameters": [
+                                {
+                                    "name": "id",
+                                    "in": "path",
+                                    "description": "blog id",
+                                    "schema": {
+                                        "type": "string"
+                                    }
+                                }
+                            ],
+                            "requestBody":{
+                                "required":true,
+                                "content":{
+                                    "application/json":{
+                                        "schema":{
+                                            "$ref":"#/components/schemas/BlogPost"
+                                        }
+                                    }
+                                }
+                            },
+                            "responses":{
+                                "200":{
+                                    "description":"Updated successfully",
+                                    "content":{
+                                        "application/json":{
+                                            "schema":{
+                                                "$ref":"#/components/schemas/BlogPost"
+                                            }
+                                        }
+                                    }
+                                },
+                                "500":{"description":"Internal Server Error"},
+                                "404":{"description":"Blog not found" }
+
+                                
+                            }
+                    }
+            },
+            
+            "/blogs/{id}/comments":{
+                "post":{
+                    "tags":["Comments"],
+                    "summary":"Posting a comment on a blog by using blog Id",
+                    "parameters": [
+                        {
+                            "name": "id",
+                            "in": "path",
+                            "description": "blog id",
+                            "schema": {
+                                "type": "string"
+                            }
+                        }
+                    ],
+                    "requestBody":{
+                        "required":true,
+                        
+                        "content":{
+                            "application/json":{
+                                "schema":{
+                                    "$ref":"#/components/schemas/Comment"
+                                }
+                            }
+                        }
+                    },
+                    "responses":{
+                        "200":{
+                            "description":"Comment was created successfully",
+                            "content":{
+                                "application/json":{
+                                    "schema":{
+                                        "$ref":"#/components/schemas/Comment"
+                                    }
+                                }
+                            }
+                        },
+                        "500":{"description":"Internal Server Error"},
+                        "404":{"description":"Blog not found"}
+                    }
+                },
+                "get":{
+                    "tags":["Comments"],
+                    "summary":"get one comment on blog",
+                    "parameters": [
+                        {
+                            "name": "id",
+                            "in": "path",
+                            "description": "blog id",
+                            "schema": {
+                                "type": "string"
+                            }
+                        }
+                    ],
+                    "responses": {
+                        "201": {
+                            "description": "Blog found",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/Comment"
+                                    }
+                                }
+                            }
+                        }
+                    },                
+                    "404":{"description":"Blog not found"},
+                    "500":{"description":"Internal Server Error"}
+                    }
+            },
+
+            "/query":{
+                "get":{
+                    "tags":["Messages"],
+                    "summary":"get Messages",
+                    "security":[
+                        {
+                            "BearerAuth":[]
+                        }
+                    ],
+                    "responses":{
+                        "200":{
+                            "required":true,
+                            "content":{
+                                "application/json":{
+                                    "schema":{
+                                        "$ref": "#/components/schemas/"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+
+                "post":{
+                    "tags":["Messages"],
+                    "summary":"Create a new message",
+                    "requestBody":{
+                        "required":true,
+                        "content":{
+                            "application/json":{
+                                "schema":{
+                                    "$ref":"#/components/schemas/queries"
+                                }
+                            }
+                        }
+                    },
+                    "responses":{
+                        "201":{
+                            "description":"Queries sent successfully",
+                            "content":{
+                                    "application/json":{
+                                        "schema":{
+                                            "$ref":"#/components/schemas/queries"
+                                        }
+                                    }
+                            }
+                        },
+                        "500":{"description":"Internal Server Error"}
+                        
+                    }
+                }
+            },
+
+            "/blogs/{id}/likes":{
+                "get":{
+                    "tags":["likes"],
+                    "summary":"Get the likes of a blog",
+                    "parameters": [
+                        {
+                            "name": "id",
+                            "in": "path",
+                            "description": "blog id",
+                            "schema": {
+                                "type": "string"
+                            }
+                        }
+                    ],
+                    "responses":{
+                        "200":{
+                            "description":"likes of the blog",
+                            "content":{
+                                "application/json":{
+                                    "schema":{
+                                        "$ref":"#/components/schemas/Likes"
+                                    }
+                                }
+                            }
+                        },
+                        "500":{"description":"Internal Server Error"},
+                        "404":{"description":"Blog not found"}
+                    }
+                    
+                },
+                "put":{
+                    "tags":["likes"],
+                    "summary":"Like a post",
+                    "security":[
+                        {
+                            "BearerAuth":[]
+                        }
+                    ],
+                    "parameters":[
+                        {
+                            "name": "id",
+                            "in": "path",
+                            "description": "blog id",
+                            "schema": {
+                                "type": "string"
+                            }
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "Blog liked successfully",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/Likes"
+                                    }
+                                }
+                            }
+                        },
+                        "500": {"description": "Internal Server Error"},
+                        "404": { "description": "Blog not found"},
+                        "401": {"description": "Unauthorized to like"}
+                    }
+
+                }
+            }
+    }
+}

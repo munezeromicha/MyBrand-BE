@@ -11,7 +11,7 @@ const DB_URL = process.env.MONGODB_URL_TEST || "";
 
 beforeAll(async () => {
   await mongoose.connect('mongodb+srv://munezeromicha2000:Munezero2024@cluster0.7mpb0qo.mongodb.net/');
-},40000);
+}, 40000);
 
 afterAll(async () => {
   await mongoose.connection.close();
@@ -24,51 +24,51 @@ const blogId = '65e0019f03bc94a233eb870a';
 const queryId = '65e001da03bc94a233eb870f';
 const token: { token: string } = { token: '' };
 describe("Logging and APIs", () => {
-  
+
   describe("Create a new user", () => {
     it("new user", async () => {
       const newUser = await supertest(app).post('/api/signup').send({
         "username": "gigi",
-         "email": "gigi@gmail.com",
-         "password": "Giramata2024!"
-     })
-     expect(newUser.status).toBe(200);
+        "email": "gigi@gmail.com",
+        "password": "Giramata2024!"
+      })
+      expect(newUser.status).toBe(200);
     })
     it("new user", async () => {
       const newUser = await supertest(app).post('/api/signup').send({
         "username": "gigi",
-         "email": "",
-         "password": "Giramata2024!"
-     })
-     expect(newUser.status).toBe(400);
+        "email": "",
+        "password": "Giramata2024!"
+      })
+      expect(newUser.status).toBe(400);
     })
   })
 
-  describe("user login", ()=>{
+  describe("user login", () => {
     it("should login in", async () => {
-        const response = await supertest(app).post("/api/login")
+      const response = await supertest(app).post("/api/login")
         .send({ email: "ntaganira@gmail.com", password: 'Ntaganira2024!' });
-        token.token = response.body.token;
-        expect(response.status).toBe(200);
-      });
-      
-      it("user not found", async () => {
-        const response = await supertest(app).post("/api/login")
+      token.token = response.body.token;
+      expect(response.status).toBe(200);
+    });
+
+    it("user not found", async () => {
+      const response = await supertest(app).post("/api/login")
         .send({ email: "ntagyyy@gmail.com", password: 'Ntaganira2024!' });
-        expect(response.status).toBe(404);
-      });
-      it("user not found without email", async () => {
-        const response = await supertest(app).post("/api/login")
+      expect(response.status).toBe(404);
+    });
+    it("user not found without email", async () => {
+      const response = await supertest(app).post("/api/login")
         .send({ email: "", password: 'Ntaganira2024!' });
-        expect(response.status).toBe(404);
-        expect(response.body.message).toContain("Missing credentials")
-      });
-      it("user not found without email", async () => {
-        const response = await supertest(app).post("/api/login")
+      expect(response.status).toBe(404);
+      expect(response.body.message).toContain("Missing credentials")
+    });
+    it("user not found without email", async () => {
+      const response = await supertest(app).post("/api/login")
         .send({ email: "ntaganira@gmail.com", password: 'Ntaganir' });
-        expect(response.status).toBe(404);
-        expect(response.body.message).toContain("Invalid Password")
-      });
+      expect(response.status).toBe(404);
+      expect(response.body.message).toContain("Invalid Password")
+    });
   })
 
 
@@ -83,17 +83,17 @@ describe("Logging and APIs", () => {
   // expect(res.status).toBe(401);
   // })
 
-  it("Without title field", async() => {
+  it("Without title field", async () => {
     const res = await supertest(app)
-    .post('/api/blogs')
-    .send({
-      content: 'Contents',
-      image: ""
-    }).set('Authorization', 'Bearer ' + token.token)
-  expect(res.status).toBe(400);
+      .post('/api/blogs')
+      .send({
+        content: 'Contents',
+        image: ""
+      }).set('Authorization', 'Bearer ' + token.token)
+    expect(res.status).toBe(400);
   });
 
-  
+
   it("Get all blogs", async () => {
     const show = await supertest(app).get("/api/blogs")
     expect(show.status).toBe(200);
@@ -111,12 +111,11 @@ describe("Logging and APIs", () => {
   });
 
 
-
   it('when you have permission', async () => {
     const res = await supertest(app)
-      .patch(`/api/blogs/${blogId}`).send({ title: "name" }).set('Authorization', 'Bearer '+ token.token);
+      .patch(`/api/blogs/${blogId}`).send({ title: "name" }).set('Authorization', 'Bearer ' + token.token);
     expect(res.status).toBe(200);
-  })
+  });
 
 
   it("commenting on single blogs", async () => {
@@ -127,7 +126,7 @@ describe("Logging and APIs", () => {
   it("commenting on single blogs", async () => {
     const show = await supertest(app).post(`/api/blogs/${identify}/comments`).send({
       "name": "rwema",
-      "email":"rwema@gmail.com",
+      "email": "rwema@gmail.com",
       "idea": "well done!"
     })
     expect(show.status).toBe(201);
@@ -144,18 +143,18 @@ describe("Logging and APIs", () => {
   it("commenting on single blogs", async () => {
     const show = await supertest(app).post(`/api/blogs/65de3228ae9ec95d74123f11000/comments`).send({
       "name": "rwema",
-      "email":"rwema@gmail",
+      "email": "rwema@gmail",
       "idea": "well done!"
     })
     expect(show.status).toBe(500);
   });
 
 
-  it("Delete comment", async()=>{
+  it("Delete comment", async () => {
     const show = await supertest(app).delete(`/api/comments/6687gkjbkkv`);
     expect(show.status).toBe(404)
   })
-  it("Delete comment", async()=>{
+  it("Delete comment", async () => {
     const show = await supertest(app).delete(`/api/comments/${commentId}`);
     expect(show.status).toBe(200)
   })
@@ -163,8 +162,8 @@ describe("Logging and APIs", () => {
 
   it('when you delete blog with permission', async () => {
     const res = await supertest(app)
-   .delete(`/api/blogs/${blogId}`)
-   .set('Authorization', 'Bearer '+ token.token)
+      .delete(`/api/blogs/${blogId}`)
+      .set('Authorization', 'Bearer ' + token.token)
     expect(res.status).toBe(200);
   });
 
@@ -172,21 +171,21 @@ describe("Logging and APIs", () => {
 
 
 it("Getting all queries", async () => {
-    const show = await supertest(app).get("/api/query");
-    // .set('Authorization', 'Bearer '+ token.token)
-    expect(show.status).toBe(200);
-    
-  });
+  const show = await supertest(app).get("/api/query");
+  // .set('Authorization', 'Bearer '+ token.token)
+  expect(show.status).toBe(200);
 
-  it("Updating a query", async () => {
-    const show = await supertest(app).patch(`/api/query/:id`);
-    expect(show.status).toBe(400);
-  });
-  it("deleting a query by using id", async () => {
-    const show = await supertest(app).delete(`/api/query/${queryId}`)
-    .set('Authorization', 'Bearer '+ token.token)
-    expect(show.status).toBe(200);
-  });
+});
+
+it("Updating a query", async () => {
+  const show = await supertest(app).patch(`/api/query/:id`);
+  expect(show.status).toBe(400);
+});
+it("deleting a query by using id", async () => {
+  const show = await supertest(app).delete(`/api/query/${queryId}`)
+    .set('Authorization', 'Bearer ' + token.token)
+  expect(show.status).toBe(200);
+});
 
 //   describe('Lets test the querie', ()=>{
 //     it('creating ')

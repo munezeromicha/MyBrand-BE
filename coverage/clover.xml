@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1709120811112" clover="3.2.0">
-  <project timestamp="1709120811112" name="All files">
-    <metrics statements="301" coveredstatements="231" conditionals="40" coveredconditionals="16" methods="54" coveredmethods="41" elements="395" coveredelements="288" complexity="0" loc="301" ncloc="301" packages="7" files="20" classes="20"/>
+<coverage generated="1709202128338" clover="3.2.0">
+  <project timestamp="1709202128338" name="All files">
+    <metrics statements="293" coveredstatements="219" conditionals="40" coveredconditionals="16" methods="54" coveredmethods="41" elements="387" coveredelements="276" complexity="0" loc="293" ncloc="293" packages="7" files="19" classes="19"/>
     <package name="src">
-      <metrics statements="22" coveredstatements="22" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <metrics statements="14" coveredstatements="14" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="index.ts" path="C:\Users\Michael-Dev\Desktop\Andela\Backend\MyBrand-BE\Typescript-BE\MyBrand-BE\src\index.ts">
         <metrics statements="14" coveredstatements="14" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
@@ -12,8 +12,8 @@
         <line num="6" count="1" type="stmt"/>
         <line num="7" count="1" type="stmt"/>
         <line num="8" count="1" type="stmt"/>
-        <line num="9" count="1" type="stmt"/>
         <line num="10" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
         <line num="13" count="1" type="stmt"/>
         <line num="14" count="1" type="stmt"/>
         <line num="15" count="1" type="stmt"/>
@@ -21,22 +21,11 @@
         <line num="17" count="1" type="stmt"/>
         <line num="19" count="1" type="stmt"/>
       </file>
-      <file name="swagger.ts" path="C:\Users\Michael-Dev\Desktop\Andela\Backend\MyBrand-BE\Typescript-BE\MyBrand-BE\src\swagger.ts">
-        <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="2" count="1" type="stmt"/>
-        <line num="4" count="1" type="stmt"/>
-        <line num="5" count="1" type="stmt"/>
-        <line num="6" count="1" type="stmt"/>
-        <line num="20" count="1" type="stmt"/>
-        <line num="25" count="1" type="stmt"/>
-        <line num="26" count="1" type="stmt"/>
-      </file>
     </package>
     <package name="src.controllers">
-      <metrics statements="149" coveredstatements="94" conditionals="22" coveredconditionals="10" methods="42" coveredmethods="30"/>
+      <metrics statements="149" coveredstatements="90" conditionals="22" coveredconditionals="10" methods="42" coveredmethods="30"/>
       <file name="blogController.ts" path="C:\Users\Michael-Dev\Desktop\Andela\Backend\MyBrand-BE\Typescript-BE\MyBrand-BE\src\controllers\blogController.ts">
-        <metrics statements="54" coveredstatements="32" conditionals="5" coveredconditionals="2" methods="12" coveredmethods="10"/>
+        <metrics statements="54" coveredstatements="31" conditionals="5" coveredconditionals="1" methods="12" coveredmethods="10"/>
         <line num="2" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
         <line num="5" count="1" type="stmt"/>
@@ -70,8 +59,8 @@
         <line num="83" count="1" type="stmt"/>
         <line num="84" count="1" type="stmt"/>
         <line num="85" count="1" type="stmt"/>
-        <line num="86" count="1" type="cond" truecount="1" falsecount="0"/>
-        <line num="87" count="1" type="stmt"/>
+        <line num="86" count="1" type="cond" truecount="0" falsecount="1"/>
+        <line num="87" count="0" type="stmt"/>
         <line num="89" count="1" type="stmt"/>
         <line num="91" count="0" type="stmt"/>
         <line num="94" count="0" type="stmt"/>
@@ -93,26 +82,26 @@
         <line num="152" count="1" type="stmt"/>
       </file>
       <file name="commentController.ts" path="C:\Users\Michael-Dev\Desktop\Andela\Backend\MyBrand-BE\Typescript-BE\MyBrand-BE\src\controllers\commentController.ts">
-        <metrics statements="37" coveredstatements="26" conditionals="3" coveredconditionals="1" methods="10" coveredmethods="6"/>
+        <metrics statements="37" coveredstatements="23" conditionals="3" coveredconditionals="2" methods="10" coveredmethods="6"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="5" count="2" type="stmt"/>
         <line num="6" count="2" type="stmt"/>
         <line num="8" count="2" type="stmt"/>
         <line num="9" count="2" type="stmt"/>
-        <line num="10" count="1" type="cond" truecount="0" falsecount="1"/>
-        <line num="11" count="0" type="stmt"/>
-        <line num="13" count="1" type="stmt"/>
-        <line num="19" count="1" type="stmt"/>
-        <line num="20" count="1" type="stmt"/>
+        <line num="10" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
         <line num="22" count="1" type="stmt"/>
         <line num="26" count="2" type="stmt"/>
         <line num="27" count="2" type="stmt"/>
         <line num="28" count="2" type="stmt"/>
         <line num="33" count="2" type="stmt"/>
         <line num="34" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="35" count="1" type="stmt"/>
-        <line num="37" count="0" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="37" count="1" type="stmt"/>
         <line num="40" count="1" type="stmt"/>
         <line num="44" count="1" type="stmt"/>
         <line num="45" count="0" type="stmt"/>
@@ -125,10 +114,10 @@
         <line num="58" count="0" type="stmt"/>
         <line num="61" count="0" type="stmt"/>
         <line num="63" count="0" type="stmt"/>
-        <line num="67" count="2" type="stmt"/>
-        <line num="68" count="2" type="stmt"/>
-        <line num="69" count="2" type="stmt"/>
-        <line num="70" count="1" type="stmt"/>
+        <line num="67" count="1" type="stmt"/>
+        <line num="68" count="1" type="stmt"/>
+        <line num="69" count="1" type="stmt"/>
+        <line num="70" count="0" type="stmt"/>
         <line num="72" count="1" type="stmt"/>
         <line num="76" count="1" type="stmt"/>
       </file>

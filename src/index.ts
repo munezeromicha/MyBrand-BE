@@ -8,7 +8,7 @@ import queriesRouter from './routes/queriesRouter'
 import swaggerUI from 'swagger-ui-express';
 // import swaggerSpec from './swagger';
 import passport from './helper/delay';
-import * as Doc from "./swagger.json";
+import * as Doc from "./mySwagger.json";
 
 const app = express();
 app.use(express.json());

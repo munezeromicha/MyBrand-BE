@@ -272,22 +272,7 @@
                         "type":"string"
                     }
                 ] ,         
-                "get":{
-                    "tags":["Likes"],
-                    "summary":"Get single blog by given Id",
-                    "responses":{
-                        "200":{
-                            "description":"ok",
-                            "schema":{
-                                "$ref":"#/definitions/Likes"
-                            }
-                        },
-                        "404":{
-                            "description":"Failed. no blog found"
-                            }
-                        }
-                    },
-        
+
                 "post":{
                     "tags":["Likes"],
                     "parameters": [
@@ -478,6 +463,8 @@
                  }
                 }
             }
+
+            
         }
      },
     
