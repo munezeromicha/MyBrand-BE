@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    
     "test": "jest --coverage --detectOpenHandles",
     "test:watch": "jest --watchAll --coverage --detectOpenHandles --verbose",
     "start": "nodemon Dir/app.js",
