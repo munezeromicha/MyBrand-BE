@@ -8,7 +8,7 @@
     "test": "jest --coverage --detectOpenHandles",
     "test:watch": "jest --watchAll --coverage --detectOpenHandles --verbose",
     "start": "nodemon Dir/app.js",
-    "build": "tsc && webpack"
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
