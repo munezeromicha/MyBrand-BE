@@ -12,7 +12,7 @@
             "description": "Server"
         },
         {
-            "url":"https://mybrand-be-6rxz.onrender.com/api",
+            "url":"https://mybrand-be-6rxz.onrender.com/",
             "description":"render development server"
         }
     ],
@@ -82,7 +82,7 @@
     "paths": {
         
 
-            "/signup": {
+            "/api/signup": {
                 "post":{
                     "tags":["endUser"],
                     "summary":"where to sign up as user by default",
@@ -115,7 +115,7 @@
 
             },
 
-            "/login": {
+            "/api/login": {
                 "post":{
                     "tags":["loguser"],
                     "summary":"Login as a user",
@@ -150,7 +150,7 @@
 
             },
     
-            "/blogs": {
+            "/api/blogs": {
 
 
                 "post": {
@@ -220,7 +220,7 @@
                     }
                 }
             },     
-            "/{id}/blogs": {
+            "/api/{id}/blogs": {
                     "get": {
                         "tags": ["Blogs"],
                         "summary": "get one blog by using id",
@@ -324,7 +324,7 @@
                     }
             },
             
-            "/blogs/{id}/comments":{
+            "/api/blogs/{id}/comments":{
                 "post":{
                     "tags":["Comments"],
                     "summary":"Posting a comment on a blog by using blog Id",
@@ -394,7 +394,7 @@
                     }
             },
 
-            "/query":{
+            "/api/query":{
                 "get":{
                     "tags":["Messages"],
                     "summary":"get Messages",
@@ -447,7 +447,7 @@
                 }
             },
 
-            "/blogs/{id}/likes":{
+            "/api/blogs/{id}/likes":{
                 "get":{
                     "tags":["likes"],
                     "summary":"Get the likes of a blog",
