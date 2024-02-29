@@ -67,7 +67,7 @@
             "properties":{
                 "name":{"type":"string"},
                 "email":{"type":"string"},
-                "content":{"type":"string"}
+                "message":{"type":"string"}
             }
         },
         "Likes":{
