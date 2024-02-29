@@ -84,7 +84,7 @@
 
             "/signup": {
                 "post":{
-                    "tags":["User"],
+                    "tags":["endUser"],
                     "summary":"where to sign up as user by default",
                     "requestBody":{
                         "required":true,
@@ -117,7 +117,7 @@
 
             "/login": {
                 "post":{
-                    "tags":["User"],
+                    "tags":["loguser"],
                     "summary":"Login as a user",
 
                     "requestBody":{
