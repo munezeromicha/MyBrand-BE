@@ -52,7 +52,15 @@
                 "email":{"type":"string"},
                 "password":{"type":"string"}
             },
-            "required":["username","password"]
+            "required":["username","email","password"]
+        },
+        "loguser":{
+            "type":"object",
+            "properties":{
+                "email":{"type":"string"},
+                "password":{"type":"string"}
+            },
+            "required":["email","password"]
         },
         "queries":{
             "type":"object",
@@ -117,7 +125,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/endUser"
+                                    "$ref": "#/components/schemas/loguser"
                                 }
                             }
                         }
