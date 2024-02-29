@@ -220,7 +220,7 @@
                     }
                 }
             },     
-            "/api/{id}/blogs": {
+            "/api/blogs/{id}": {
                     "get": {
                         "tags": ["Blogs"],
                         "summary": "get one blog by using id",
