@@ -1,0 +1,549 @@
+{
+    "swagger":"2.0",
+    
+    "securityDefinitions": {
+        "Bearer": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header",
+            "description": "Enter your bearer token in the format **Bearer <token>**"
+          }
+    },
+    
+       
+    
+    "info":{
+        "title":"MyBrand-BE swagger express",
+        "version":"1.0.0",
+        "description":"This is Mybrand-BE implementation in swagger",
+        "license":{
+            "name": "",
+            "url": "http://localhost:9000"
+        }
+     },
+     "schemes": [
+        "http",
+        "https"
+     ],
+
+     "servers": [
+        {
+          "url": "http://localhost:9000",
+          "description": "development server"
+        },
+        {
+          "url": "http://localhost:9000",
+          "description": "production server"
+        }
+      ],
+
+     "host":" ",
+     "basePath": "/api",
+     "tags": [
+        {
+            "name": "Blogs",
+            "description": "Blog API "
+        }
+     ],
+    
+     "consumes":[
+        "application/json",
+        "multipart/form-data"
+     ],
+     "produces":[
+        "application/json"
+     ],
+    
+    
+     "paths": {
+     
+        "/api/signup":{
+            "post":{
+                "tags":["Auth"],
+                "summary": "User Authentication",
+                "security": [
+                    {
+                      "token": []
+                    }
+                ],
+                "parameters": [{
+                    "in": "body",
+                    "name": "body",
+                    "description": "User signup ",
+                    
+                    "schema": {
+                        "$ref": "#/definitions/User"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200":{
+                        "description": "ok"
+                    },
+                    "400":{
+                        "description": "invalid input, validation failed"
+                    },
+                    "409":{
+                        "description": "invalid input, user email exist"
+                    }
+                }
+            }
+        },
+    
+        "/api/login":{
+            "post":{
+                "tags":["Auth"],
+                "summary": "User Authentication",
+                "parameters": [{
+                    "in": "body",
+                    "name": "body",
+                    "description": "User login ",
+                    "schema": {
+                        "$ref": "#/definitions/User Login"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200":{
+                        "description": "ok"
+                    },
+                    "404":{
+                        "description": "user email or password not found"
+                    }
+                }
+            }
+        },
+    
+    
+    
+    
+    
+        "/blogs":{
+            "get": {
+                "tags": ["Blogs"],
+                "summary": "Get all blogs",
+                "responses": {
+                    "200":{
+                        "description": "ok",
+                        "schema":{
+                            "$ref": "#/definitions/Blogs"
+                        }
+                        
+                    }
+                }
+            },
+            "post":{
+                "tags": ["Blogs"],
+                "summary": "Create new blog",
+                "consumes": [
+                    "multipart/form-data"],
+                "parameters": [
+                   {
+                    "in": "formData",
+                    "name": "image",
+                    "type": "file",
+                    "description": "Blog we want to create"
+                   
+                   },
+                   {
+                    "in": "formData",
+                    "name": "title",
+                    "type": "string",
+                    "description": "blog title"
+                   
+                   },
+                   {
+                    "in": "formData",
+                    "name": "blogIntro",
+                    "type": "string",
+                    "description": "blog intro"
+                   
+                   },
+                   {
+                    "in": "formData",
+                    "name": "content",
+                    "type": "string",
+                    "description": "blog description"
+                   
+                   }
+                   
+                ],
+    
+    
+                "produces":[
+                    "application/json"
+                ],
+                "responses": {
+                    "200":{
+                        "description": "ok",
+                        "schema":{
+                            "$ref": "#/definitions/id"
+                        }
+                    },
+                    "400":{
+                        "description": "Failed to post data"
+                    }
+                }
+            }
+        },
+            "/blogs/{id}":{
+                "parameters":[
+                    {
+                    "name":"id",
+                    "in":"path",
+                    "required":true,
+                    "description":"Id of blog we want to match",
+                    "type":"string"
+                }
+            ] ,
+            "get":{
+                "tags":["Blogs"],
+                "summary":"Get single blog by given Id",
+                "responses":{
+                    "200":{
+                        "description":"ok",
+                        "schema":{
+                            "$ref":"#/definitions/Blog"
+                        }
+                    },
+                    "404":{
+                        "description":"Failed. no blog found"
+                        }
+                    }
+                },
+            
+            "patch":{
+                "tags":["Blogs"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "description": "new value for blog ",
+                        "schema": {
+                            "$ref": "#/definitions/Blog"
+                        }
+                    }
+                ],
+                "summary":"Update a single blog by given Id",
+                "responses":{
+                    "200":{
+                        "description":"ok",
+                        "schema":{
+                            "$ref":"#/definitions/Blog"
+                        }
+                    },
+                    "400":{
+                        "description":"Failed. some input data validation failed"
+                     },
+                    "404":{
+                        "description":"Failed. no blog found"
+                     }
+                    }
+                },
+    
+                "delete":{
+                  
+                    "tags":["Blogs"],
+                
+                    "summary":"Delete a single blog by given Id",
+                    "responses":{
+                        "204":{
+                            "description":"ok",
+                            "schema":{
+                                "$ref":"#/definitions/Blog"
+                            }
+                        },
+                        "404":{
+                            "description":"Failed. no blog found"
+                         }
+                        }
+                    }
+            }
+        ,
+    
+        "/blogs/{id}/likes":{
+                    "parameters":[
+                        {
+                        "name":"id",
+                        "in":"path",
+                        "required":true,
+                        "description":"Id of blog we want to comments",
+                        "type":"string"
+                    }
+                ] ,         
+
+                "post":{
+                    "tags":["Likes"],
+                    "parameters": [
+                        {
+                            "in": "body",
+                            "name": "body",
+                            "required": true,
+                            "description": "post new like to a blog ",
+                            "schema": {
+                               "$ref": "#/definitions/Likes"
+                            }
+                        }
+                    ],
+                    "summary":"Comment to a given blog Id",
+                    "responses":{
+                        "200":{
+                            "description":"ok",
+                            "schema":{
+                               
+                            }
+                        },
+                        "400":{
+                            "description":"Failed. some input data validation failed"
+                        },
+                        "404":{
+                            "description":"Failed. no blog Id found"
+                        },
+                        "401":{
+                            "description":"Failed. no blog Id found"
+                        }
+                        }
+                    }
+        },
+    
+        "/blogs/{id}/comments":{
+            "parameters":[
+                {
+                "name":"id",
+                "in":"path",
+                "required":true,
+                "description":"Id of blog we want to comments",
+                "type":"string"
+            }
+        ] ,
+        "get":{
+            "tags":["Comment"],
+            "summary":"Get single blog by given Id",
+            "responses":{
+                "200":{
+                    "description":"ok",
+                    "schema":{
+                        "$ref":"#/definitions/Comment"
+                    }
+                },
+                "404":{
+                    "description":"Failed. no blog found"
+                    }
+                }
+            },
+        
+        "post":{
+            "tags":["Comment"],
+            "parameters": [
+                {
+                    "in": "body",
+                    "name": "body",
+                    "required": true,
+                    "description": "post new comment for blog ",
+                    "schema": {
+                        "$ref": "#/definitions/Comment"
+                    }
+                }
+            ],
+            "summary":"Comment to a given blog Id",
+            "responses":{
+                "200":{
+                    "description":"ok",
+                    "schema":{
+                        "$ref":"#/definitions/Comment"
+                    }
+                },
+                "400":{
+                    "description":"Failed. some input data validation failed"
+                 },
+                "404":{
+                    "description":"Failed. no comment found"
+                 }
+                }
+            }
+        },
+    
+        "/comments/{id}":{
+            "parameters":[
+                {
+                "name":"id",
+                "in":"path",
+                "required":true,
+                "description":"Id of single comments",
+                "type":"string"
+            }
+        ] ,
+        "get":{
+            "tags":["Comment"],
+            "summary":"view comment by a given Id ",
+            "responses":{
+                "200":{
+                    "description":"ok",
+                    "schema":{
+                        "$ref":"#/definitions/Comment"
+                    }
+                },
+                "404":{
+                    "description":"Failed. no comment found"
+                    }
+                }
+            },
+        
+        "delete":{
+            "tags":["Comment"],
+            "parameters": [
+                {
+                    "in": "body",
+                    "name": "body",
+                    "required": true,
+                    "description": "Delete a comment ",
+                    "schema": {
+                        "$ref": "#/definitions/Comment"
+                    }
+                }
+            ],
+            "summary":"Delete a comment with a given Id",
+            "responses":{
+                "204":{
+                    "description":"ok!! comment successfull deleted",
+                    "schema":{
+                        "$ref":"#/definitions/Comment"
+                    }
+                }
+                }
+            }
+        },
+    
+        "/api/query":{
+            
+        "get":{
+            "tags":["Querries"],
+            "summary":"Client Querris",
+            "responses":{
+                "200":{
+                    "description":"ok",
+                    "schema":{
+                        "$ref":"#/definitions/Querry"
+                    }
+                },
+                "404":{
+                    "description":"Failed. no client querries found"
+                    }
+                }
+            },
+        
+        "post":{
+            "tags":["Querries"],
+           "consumes":["application/json"],
+            "parameters": [
+                {
+                    "in": "body",
+                    "name": "body",
+                    "required": true,
+                    "description": "post new Query ",
+                    "schema": {
+                        "$ref": "#/definitions/Querry"
+                    }
+                }
+            ],
+            "summary":"Send a client query",
+            "responses":{
+                "200":{
+                    "description":"ok",
+                    "schema":{
+                        "$ref":"#/definitions/Querries"
+                    }
+                },
+                "400":{
+                    "description":"Failed. some input data validation failed"
+                 },
+                "404":{
+                    "description":"Failed. no client querries found"
+                 }
+                }
+            }
+
+            
+        }
+     },
+    
+     "definitions": {
+
+            "User Signup":{
+                "type":"object",
+                "properties": {
+                    "username":{
+                        "type":"string"
+                    },
+                    "email":{
+                        "type":"string"
+                    },
+                    "password":{
+                        "type":"string"
+                    }
+                }
+            },
+            "User Login":{
+                "type":"object",
+                "properties": {
+                    "email":{
+                        "type":"string"
+                    },
+                    "password":{
+                        "type":"string"
+                    }
+                }
+            },
+            "Blog":{
+                "type":"object",
+                "properties": {
+                    "title":{
+                        "type":"string"
+                    },
+                    "content":{
+                        "type":"string"
+                    },
+                    "image":{
+                        "type":"string"
+                    }
+                }
+            },
+
+            "Comment":{
+                "type":"object",
+                "properties": {
+                "name":{
+                    "type":"string"
+                    },    
+                "email":{
+                        "type":"string"
+                        },
+                "idea":{
+                            "type":"string"
+                        } 
+                }
+            },
+    
+
+    
+            "Querry":{
+                "type":"object",
+        
+                "properties": {
+                     "name":{"type":"string"},
+                     "email":{"type":"string"},
+                     "message":{"type":"string"}
+                    }
+                },
+            "userQuerry":{
+                "type":"object",
+        
+                "properties": {
+                    "names":{"type":"string"},
+                     "email":{"type":"string"},
+                     "location":{"type":"string"}
+                    }
+                }
+            } 
+    }
