@@ -1,4 +1,5 @@
 [![Coverage Status](https://coveralls.io/repos/github/munezeromicha/MyBrand-BE/badge.svg?branch=main)](https://coveralls.io/github/munezeromicha/MyBrand-BE?branch=main)
+![Static Badge](https://img.shields.io/badge/https%3A%2F%2Fimg.shields.io%2Fbadge%2Fany_text-you_passed)
 
 
 
