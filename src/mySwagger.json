@@ -476,42 +476,8 @@
                         "404":{"description":"Blog not found"}
                     }
                     
-                },
-                "put":{
-                    "tags":["likes"],
-                    "summary":"Like a post",
-                    "security":[
-                        {
-                            "BearerAuth":[]
-                        }
-                    ],
-                    "parameters":[
-                        {
-                            "name": "id",
-                            "in": "path",
-                            "description": "blog id",
-                            "schema": {
-                                "type": "string"
-                            }
-                        }
-                    ],
-                    "responses": {
-                        "200": {
-                            "description": "Blog liked successfully",
-                            "content": {
-                                "application/json": {
-                                    "schema": {
-                                        "$ref": "#/components/schemas/Likes"
-                                    }
-                                }
-                            }
-                        },
-                        "500": {"description": "Internal Server Error"},
-                        "404": { "description": "Blog not found"},
-                        "401": {"description": "Unauthorized to like"}
-                    }
-
                 }
+
             }
     }
 }
