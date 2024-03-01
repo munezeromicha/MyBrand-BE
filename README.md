@@ -1,6 +1,6 @@
 [![Coverage Status](https://coveralls.io/repos/github/munezeromicha/MyBrand-BE/badge.svg?branch=main)](https://coveralls.io/github/munezeromicha/MyBrand-BE?branch=main)
 ![Static Badge](https://img.shields.io/badge/Node%20js-passed)
-https://img.shields.io/badge/Jest-323330?style=for-the-badge&logo=Jest&logoColor=white
+[![Naereen's github stats](https://github-readme-stats.vercel.app/api?username=Naereen&theme=blue-green)](https://github.com/anuraghazra/github-readme-stats)
 
 
 
