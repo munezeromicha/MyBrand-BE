@@ -3,6 +3,7 @@
 [![TypeScript](https://badgen.net/badge/icon/typescript?icon=typescript&label)](https://typescriptlang.org)
 [![CircleCI](https://badgen.net/badge/icon/circleci?icon=circleci&label)](https://https://circleci.com/)
 [![Npm](https://badgen.net/badge/icon/npm?icon=npm&label)](https://https://npmjs.com/)
+[![Npm](https://badgen.net/badge/icon/npm?icon=npm&label)](https://https://npmjs.com/)
 
 
 
