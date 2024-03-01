@@ -1,6 +1,5 @@
 [![Coverage Status](https://coveralls.io/repos/github/munezeromicha/MyBrand-BE/badge.svg?branch=main)](https://coveralls.io/github/munezeromicha/MyBrand-BE?branch=main)
-.. image:: https://coveralls.io/repos/github/munezeromicha/MyBrand-BE/badge.svg?branch=main
-:target: https://coveralls.io/github/munezeromicha/MyBrand-BE?
+
 
 
 <!DOCTYPE html>
