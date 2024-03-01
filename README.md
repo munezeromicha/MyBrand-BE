@@ -29,8 +29,9 @@
   <li><strong>Clone the Repository:</strong> Clone this repository to your local machine using the following command:<br>
     <code>git clone https://github.com/munezeromicha/MyBrand-BE.git</code></li>
   <li><strong>Install Dependencies:</strong> Navigate to the project directory and install the dependencies using npm or yarn:<br>
-    <code>cd MyBrand-BE<br>npm install</code></li>
-  <li><strong>Set Up Environment Variables:</strong> Create a <code>.env</code> file in the root directory of the project and configure the environment variables required for the project. You can find a sample <code>.env.example</code> file in the repository.</li>
+    <code>cd MyBrand-BE<br>
+      npm install</code></li>
+  <li><strong>Set Up Environment Variables:</strong> Create a <code>.env</code> file in the root directory of the project and configure the environment variables required for the project.</li>
   <li><strong>Start the Server:</strong> Start the backend server using the following command:<br>
     <code>npm start</code></li>
   <li><strong>Explore APIs:</strong> Access the Swagger documentation to explore and test the backend APIs. Open your browser and navigate to <code>http://localhost:9000/api-docs</code>.</li>
