@@ -20,7 +20,7 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
         if (err || !user) {
           
           const error = new Error(info?.message || 'Error');
-          return res.status(404).json(info);
+          return res.status(404).json({info, code: 404});
         }
 
         req.login(
@@ -38,7 +38,7 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
           }
         );
       } catch (error) {
-        return next(error);
+        return res.status(400).json({ error });
       }
     }
   )(req, res, next);
