@@ -30,7 +30,7 @@ const getComment = async (req: Request, res: Response) => {
     // if (!blog) {
     //   return res.status(404).send({ error: "Not found" });
     // }
-    const comment = await Comment.findOne({ blog:blogId });
+    const comment = await Comment.find({blog: blogId});
     if (comment) {
       return res.status(200).json(comment);
   } else {
