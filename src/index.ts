@@ -14,7 +14,9 @@ import cors from 'cors'
 const app = express();
 app.use(express.json());
 app.use(passport.initialize());
-app.use(cors());
+app.use(cors({
+    origin: '*'
+}));
 app.use("/api", blogRoutes, commentRoutes,endUser,queriesRouter);
 app.use('/swagger-doc', swaggerUI.serve,swaggerUI.setup(Doc))
 
