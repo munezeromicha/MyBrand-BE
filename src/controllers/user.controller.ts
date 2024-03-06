@@ -33,8 +33,9 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
             const body = { _id: user._id, email: user.email, role: user.role };
             const token = jwt.sign({ user: body }, 'TOP_SECRET', );
             const Query = info.message;
+            const status = true;
 
-            return res.status(200).json({ token, Query });
+            return res.status(200).json({ token, Query, status });
           }
         );
       } catch (error) {
