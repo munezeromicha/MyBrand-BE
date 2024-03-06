@@ -1,4 +1,5 @@
 import express from 'express';
+import { Request, Response } from 'express';
 import DB from './config/configure';
 import dotenv from 'dotenv';
 import blogRoutes from './routes/blogRoutes'
@@ -20,4 +21,8 @@ app.use(cors({
 app.use("/api", blogRoutes, commentRoutes,endUser,queriesRouter);
 app.use('/swagger-doc', swaggerUI.serve,swaggerUI.setup(Doc))
 
+app.use((req: Request, res: Response, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    next();
+  });
 export default app;
