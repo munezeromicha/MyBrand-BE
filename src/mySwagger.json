@@ -452,11 +452,6 @@
                 "put":{
                     "tags":["likes"],
                     "summary":"Like a post",
-                    "security":[
-                        {
-                            "BearerAuth":[]
-                        }
-                    ],
                     "parameters":[
                         {
                             "name": "id",
