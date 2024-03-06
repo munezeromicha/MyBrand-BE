@@ -31,8 +31,9 @@ const getComment = async (req: Request, res: Response) => {
     //   return res.status(404).send({ error: "Not found" });
     // }
     const comment = await Comment.find({blog: blogId});
+    const comNumber = comment.length;
     if (comment) {
-      return res.status(200).json(comment);
+      return res.status(200).json({comment, comNumber});
   } else {
       res.status(404).json('That Comment Not exist');
   }
