@@ -12,7 +12,7 @@
             "description": "Server"
         },
         {
-            "url":"https://mybrand-be-6rxz.onrender.com/",
+            "url":"https://mybrand-be-6rxz.onrender.com",
             "description":"render development server"
         }
     ],
