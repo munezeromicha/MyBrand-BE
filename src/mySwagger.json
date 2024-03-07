@@ -275,11 +275,7 @@
                     "patch":{
                             "tags":["Blogs"],
                             "summary":"Updating a blog store in the database!",
-                            "security": [
-                                {
-                                "BearerAuth": []
-                                }
-                            ],
+                            
                             "parameters": [
                                 {
                                     "name": "id",

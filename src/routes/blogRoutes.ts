@@ -9,7 +9,7 @@ const router = Router()
 router.post('/blogs',checkAuthenticated,checkAdmin,upload.single('image'),createPost)
 router.get('/blogs/:id',getPost)
 router.get('/blogs',getAllPost)
-router.patch('/blogs/:id', checkAuthenticated,checkAdmin,updatePost)
+router.patch('/blogs/:id', updatePost)
 router.delete('/blogs/:id',deletePost)
 router.post("/blogs/:id/likes",Likes)
 
