@@ -10,7 +10,7 @@ router.post('/blogs',checkAuthenticated,checkAdmin,upload.single('image'),create
 router.get('/blogs/:id',getPost)
 router.get('/blogs',getAllPost)
 router.patch('/blogs/:id', checkAuthenticated,checkAdmin,updatePost)
-router.delete('/blogs/:id',checkAuthenticated,checkAdmin,deletePost)
+router.delete('/blogs/:id',deletePost)
 router.post("/blogs/:id/likes",Likes)
 
 
