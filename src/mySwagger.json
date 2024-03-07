@@ -398,11 +398,6 @@
                 "get":{
                     "tags":["queries"],
                     "summary":"Get queries",
-                    "security":[
-                        {
-                            "BearerAuth":[]
-                        }
-                    ],
                     "responses":{
                         "200":{
                             "required":true,
