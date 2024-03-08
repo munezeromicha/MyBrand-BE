@@ -3,7 +3,7 @@ export interface Ipost {
   title: string;
   content: string;
   image: string;
-  like: Boolean;
+  like: Number;
 }
 
 const PostSchema = new mongoose.Schema<Ipost>(
@@ -21,7 +21,7 @@ const PostSchema = new mongoose.Schema<Ipost>(
       required: false,
     },
     like: {
-      type: Boolean,
+      type: Number,
       default: 0,
     },
   },
