@@ -435,7 +435,7 @@
 
             "/api/blogs/{id}/likes":{
 
-                "get":{
+                "post":{
                     "tags":["likes"],
                     "summary":"Like a post",
                     "parameters":[
