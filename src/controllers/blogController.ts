@@ -100,27 +100,51 @@ const getAllPost = async (req: Request, res: Response) => {
   try {
     let posts;
     posts = await Post.find();
-    res.status(200).json(posts);
+    const convert = posts.length;
+    res.status(200).json({posts, convert});
   } catch (err) {
     res.status(500).json(err);
   }
 };
-const Likes = async (req: Request, res: Response) => {
-  try {
-    const postId = req.params.id;
-    const post = await Post.findById(postId);
+const createNewLike=async (req:Request, res:Response) => {
+  // if(req.user){
+  //     const user=req.user as IUser;
+  //     const userID=user._id
+  //     let uLikes=true
+  //  const userlikes =await  blogLike.findOne({blogId:req.params.id,
+  //     userId:userID}) 
 
-    if (!post) {
-      return res.status(404).json({ Error: "valid ID" });
-    }
-    
-    await Post.updateOne({ _id: post._id }, { $inc: { like: 1 } });
+  // if(userlikes){
+  //     userlikes.blogLike=!userlikes.blogLike
+  //     await userlikes.save() 
+  //     const TotalLike=await blogLike.countDocuments({blogId:req.params.id,blogLike:true})
+  //     const TotalDislike=await blogLike.countDocuments({blogId:req.params.id,blogLike:false})
 
-    res.status(200).json({ Blog: "liked", $inc: { like: 1 } });
-  } catch (error) {
-    res.status(500).json({ error: "Error occurred" });
+  //     return res.status(200).json({
+  //         message:"you are already reacted to this page and the status of your reaction is changed to like or dislike accordingly",
+  //         data:{likes:TotalLike,
+  //               dislike:TotalDislike
+  //               }
+  //      })
+  // }else{
+  //     const likes= new blogLike({
+  //         blogId:req.params.id,
+  //         userId:userID,
+  //         blogLike:uLikes,
+  //     })
+  
+  //    const newLike= await likes.save()
+  //    const TotalLike=await blogLike.countDocuments({blogId:req.params.id,blogLike:true})
+
+  //    return res.status(200).json({
+  //                         message:'new like is added',
+  //                         data:TotalLike
+  //                         })
+  // }
+  // }
+  console.log("Helloooooo");
+  console.log(req.user);
   }
-};
 
 // const Likes = async(req: Request, res: Response)=> {
 //   try {
@@ -149,4 +173,4 @@ const Likes = async (req: Request, res: Response) => {
 //   }
 // };
 
-export { createPost, getAllPost, getPost, updatePost, deletePost, Likes };
+export { createPost, getAllPost, getPost, updatePost, deletePost, createNewLike };
