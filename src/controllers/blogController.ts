@@ -142,35 +142,35 @@ const createNewLike=async (req:Request, res:Response) => {
   //                         })
   // }
   // }
-  console.log("Helloooooo");
-  console.log(req.user);
+  // console.log("Helloooooo");
+  // console.log(req.user);
   }
 
-// const Likes = async(req: Request, res: Response)=> {
-//   try {
-//     const { id } = req.params;
-//     const blog = await Blog.findById(id);
-//     if (!blog) {
-//       return res.status(404).json({ message: 'Blog not found' });
-//     }
+const Likes = async(req: Request, res: Response)=> {
+  try {
+    const { id } = req.params;
+    const blog = await Blog.findById(id);
+    if (!blog) {
+      return res.status(404).json({ message: 'Blog not found' });
+    }
 
-//     const newLike = new Blog({
-//       blog: blog.id,
-//     })
-//     await newLike.save();
+    const newLike = new Blog({
+      blog: blog.id,
+    })
+    await newLike.save();
 
-//     // const numberLike = await Blog.countDocuments({blog: req.params.id}).exec();
+    // const numberLike = await Blog.countDocuments({blog: req.params.id}).exec();
     
-//     const payload = {
-//       message: 'liked',
-//       // likes: numberLike
-//     }
+    const payload = {
+      message: 'liked',
+      // likes: numberLike
+    }
 
-//     res.status(201).json(payload);
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ message: 'Internal Server Error' });
-//   }
-// };
+    res.status(201).json(payload);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+};
 
-export { createPost, getAllPost, getPost, updatePost, deletePost, createNewLike };
+export { createPost, getAllPost, getPost, updatePost, deletePost, Likes };

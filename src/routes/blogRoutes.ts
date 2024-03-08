@@ -2,8 +2,7 @@ import { Router } from "express"
 import { createPost, getAllPost, getPost, updatePost, deletePost} from "../controllers/blogController"
 import upload from "../helper/multer"
 import { checkAdmin, checkAuthenticated } from "../middleware/adminAuthorize";
-// import {createNewLike} from "../controllers/blogController";
-import {addLike, getLikes, deleteLike} from "../controllers/likeController";
+import {Likes} from "../controllers/blogController";
 
 const router = Router()
 
@@ -13,7 +12,7 @@ router.get('/blogs',getAllPost)
 router.patch('/blogs/:id', updatePost)
 router.delete('/blogs/:id',deletePost)
 // router.post("/blogs/:id/likes",createNewLike)
-router.post("/blogs/:id/likes",addLike);
+router.post("/blogs/:id/likes",Likes);
 
 
 
