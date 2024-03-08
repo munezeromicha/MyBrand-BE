@@ -100,7 +100,7 @@ const getAllPost = async (req: Request, res: Response) => {
   try {
     let posts;
     posts = await Post.find();
-    const convert = posts.length;
+    // const convert = posts.length;
     res.status(200).json(posts);
   } catch (err) {
     res.status(500).json(err);
