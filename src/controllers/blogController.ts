@@ -75,7 +75,7 @@ const updatePost=async(req:Request,res:Response)=>{
         data:updated
       });
     } catch (error) {
-        res.status(500).json({status:"error", error: 'hello' });
+        res.status(500).json({status:"error", error: 'Occurred' });
       }
 }
 
@@ -106,45 +106,6 @@ const getAllPost = async (req: Request, res: Response) => {
     res.status(500).json(err);
   }
 };
-const createNewLike=async (req:Request, res:Response) => {
-  // if(req.user){
-  //     const user=req.user as IUser;
-  //     const userID=user._id
-  //     let uLikes=true
-  //  const userlikes =await  blogLike.findOne({blogId:req.params.id,
-  //     userId:userID}) 
-
-  // if(userlikes){
-  //     userlikes.blogLike=!userlikes.blogLike
-  //     await userlikes.save() 
-  //     const TotalLike=await blogLike.countDocuments({blogId:req.params.id,blogLike:true})
-  //     const TotalDislike=await blogLike.countDocuments({blogId:req.params.id,blogLike:false})
-
-  //     return res.status(200).json({
-  //         message:"you are already reacted to this page and the status of your reaction is changed to like or dislike accordingly",
-  //         data:{likes:TotalLike,
-  //               dislike:TotalDislike
-  //               }
-  //      })
-  // }else{
-  //     const likes= new blogLike({
-  //         blogId:req.params.id,
-  //         userId:userID,
-  //         blogLike:uLikes,
-  //     })
-  
-  //    const newLike= await likes.save()
-  //    const TotalLike=await blogLike.countDocuments({blogId:req.params.id,blogLike:true})
-
-  //    return res.status(200).json({
-  //                         message:'new like is added',
-  //                         data:TotalLike
-  //                         })
-  // }
-  // }
-  // console.log("Helloooooo");
-  // console.log(req.user);
-  }
 
 const Likes = async(req: Request, res: Response)=> {
   try {
@@ -159,11 +120,11 @@ const Likes = async(req: Request, res: Response)=> {
     })
     await newLike.save();
 
-    // const numberLike = await Blog.countDocuments({blog: req.params.id}).exec();
+    const numberLike = await Blog.countDocuments({blog: req.params.id}).exec();
     
     const payload = {
       message: 'liked',
-      // likes: numberLike
+      likes: numberLike
     }
 
     res.status(201).json(payload);
