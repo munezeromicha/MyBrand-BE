@@ -3,7 +3,7 @@ export interface Ipost {
   title: string;
   content: string;
   image: string;
-  like: Number;
+  like: number;
 }
 
 const PostSchema = new mongoose.Schema<Ipost>(

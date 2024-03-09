@@ -107,31 +107,20 @@ const getAllPost = async (req: Request, res: Response) => {
   }
 };
 
-const Likes = async(req: Request, res: Response)=> {
+ const Likes = async(req: Request, res: Response)=> {
   try {
     const { id } = req.params;
-    const blog = await Blog.findById(id);
+    const blog = await Post.findById(id);
     if (!blog) {
       return res.status(404).json({ message: 'Blog not found' });
     }
-
-    const newLike = new Blog({
-      blog: blog.id,
-    })
-    await newLike.save();
-
-    const numberLike = await Blog.countDocuments({blog: req.params.id}).exec();
-    
-    const payload = {
-      message: 'liked',
-      likes: numberLike
-    }
-
-    res.status(201).json(payload);
+    blog.like++; // here i Incremented likes..
+    await blog.save();
+    res.status(200).json({ likes: blog.like });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Internal Server Error' });
-  }
-};
+    res.status(500).json({ message: 'Internal Server Error' });
+    }
+  };
 
 export { createPost, getAllPost, getPost, updatePost, deletePost, Likes };
