@@ -26,7 +26,7 @@ export const recoverEmail = async(req: Request, res: Response) => {
 
   // Email options
   const mailOptions = {
-    from: 'your_email@gmail.com', // Your Gmail email address
+    from: 'munezerontaganiramichel@gmail.com', // Your Gmail email address
     to: email,
     subject: '',
     text: ''
