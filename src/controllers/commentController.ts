@@ -1,4 +1,4 @@
-import { Comment } from "../models/modelComments";
+import  Comment  from "../models/modelComments";
 import Post from "../models/blog";
 import { Request, Response } from "express";
 
@@ -42,16 +42,14 @@ const getComment = async (req: Request, res: Response) => {
   }
 };
 
-const readAllComments = async (req: Request, res: Response) => {
+const getAllComments = async (req: Request, res: Response): Promise<void> => {
   try {
-    console.log('comment');
-    const comment = await Comment.find();
-    
-    res.status(200).json(comment);
-} catch (error) {
-    res.status(404).json('The Comments were not found');
-}
-}
+      const comments = await Comment.find(); // Find all comments
+      res.status(200).json(comments); // Send the comments as JSON response
+  } catch (error) {
+      res.status(500).json({ message: 'Internal server error' }); // Send an error response if something goes wrong
+  }
+};
 
 
 const updateComment = async (req: Request, res: Response) => {
@@ -74,4 +72,4 @@ const deleteComment = async (req: Request, res: Response) => {
   }
 };
 
-export { commentOn, getComment, deleteComment, updateComment, readAllComments};
+export { commentOn, getComment, deleteComment, updateComment, getAllComments};

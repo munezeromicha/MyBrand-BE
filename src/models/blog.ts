@@ -1,12 +1,15 @@
-import mongoose from "mongoose";
-export interface Ipost {
+import mongoose, { Schema, Document } from "mongoose";
+import Comment from "../models/modelComments"; // Import the Comment model
+
+export interface IPost extends Document {
   title: string;
   content: string;
   image: string;
   like: number;
+  comments: Comment[]; // Reference to comments
 }
 
-const PostSchema = new mongoose.Schema<Ipost>(
+const PostSchema = new Schema<IPost>(
   {
     title: {
       type: String,
@@ -24,7 +27,9 @@ const PostSchema = new mongoose.Schema<Ipost>(
       type: Number,
       default: 0,
     },
+    comments: [{ type: Schema.Types.ObjectId, ref: 'Comment' }] // Reference to comments
   },
   { timestamps: true }
 );
-export default mongoose.model<Ipost>("Post", PostSchema);
+
+export default mongoose.model<IPost>("Post", PostSchema);

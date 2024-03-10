@@ -1,38 +1,31 @@
-import {Schema ,Types, model} from 'mongoose';
+import { Schema, Types, model, Document } from 'mongoose';
 
-interface SCHpost {
-    name:string,
-    email:string,
-    idea:string,
-    blog:Types.ObjectId
+interface CommentModel extends Document {
+    name?: string;
+    email?: string;
+    idea?: string;
+    blog: Types.ObjectId;
 }
 
-const commentSchema = new Schema<SCHpost>({
+const commentSchema = new Schema<CommentModel>({
     name: {
-        type: 'string',
+        type: String,
         required: false
     },
     email: {
-        type: 'string',
+        type: String,
         required: false,
     },
     idea: {
-        type: 'string',
+        type: String,
         required: false
     },
-    
     blog: {
         type: Schema.Types.ObjectId,
         ref: 'Blog'
     }
 });
-export const Comment = model<SCHpost>('Comment', commentSchema);
 
+const Comment = model<CommentModel>('Comment', commentSchema);
 
-
-
-
-
-
-
-
+export default Comment;

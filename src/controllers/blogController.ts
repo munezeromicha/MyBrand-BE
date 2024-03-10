@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import cloudinary from "../helper/cloudinary";
 import Blog from '../models/blog'
-import Post, { Ipost } from "../models/blog";
+import Post from "../models/blog";
 import { postSchema } from "../utils/validate";
 
 
