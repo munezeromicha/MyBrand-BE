@@ -252,7 +252,11 @@
                     "delete":{
                         "tags":["Blogs"],
                         "summary": "Deleting a blog from the database",
-
+                        "security": [
+                            {
+                            "BearerAuth": []
+                            }
+                        ],
                         "parameters": [
                             {
                                 "name": "id",
@@ -275,7 +279,11 @@
                     "patch":{
                             "tags":["Blogs"],
                             "summary":"Updating a blog store in the database!",
-                            
+                            "security": [
+                                {
+                                "BearerAuth": []
+                                }
+                            ],
                             "parameters": [
                                 {
                                     "name": "id",
@@ -389,6 +397,11 @@
                 "get":{
                     "tags":["queries"],
                     "summary":"Get queries",
+                    "security":[
+                        {
+                            "BearerAuth":[]
+                        }
+                    ],
                     "responses":{
                         "200":{
                             "required":true,

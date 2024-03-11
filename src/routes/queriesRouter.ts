@@ -5,7 +5,7 @@ import { createQuery, getQueries, getQuery, deleteQuery, updateQuery} from "../c
 const router = Router();
 
 router.post("/query", createQuery)
-router.get("/query", getQueries)
+router.get("/query",checkAuthenticated,checkAdmin,getQueries)
 router.patch("/query/:id",updateQuery)
 router.delete("/query/:id",checkAuthenticated,checkAdmin,deleteQuery)
 
