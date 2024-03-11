@@ -17,11 +17,11 @@ afterAll(async () => {
   await mongoose.connection.close();
 });
 
-let commentId = " ";
-let identify = '65e0019f03bc94a233eb870a';
+let commentId = "65df1d292dd2d155f87bd3c0";
+let identify = '65eeaa69c6a7385e537d602c';
 const id = '65dc6fd4ef92b13cd7fe8c44'; // userID
-const blogId = '65e0019f03bc94a233eb870a';
-const queryId = '65e001da03bc94a233eb870f';
+const blogId = '65eeaa69c6a7385e537d602c';
+const queryId = '65eeabe2c6a7385e537d6032';
 const token: { token: string } = { token: '' };
 describe("Logging and APIs", () => {
 
