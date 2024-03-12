@@ -171,8 +171,8 @@ describe("Logging and APIs", () => {
 
 
 it("Getting all queries", async () => {
-  const show = await supertest(app).get("/api/query");
-  // .set('Authorization', 'Bearer '+ token.token)
+  const show = await supertest(app).get("/api/query")
+  .set('Authorization', 'Bearer '+ token.token)
   expect(show.status).toBe(200);
 
 });

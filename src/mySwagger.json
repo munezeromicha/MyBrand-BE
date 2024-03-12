@@ -45,7 +45,7 @@
                 "idea":{"type":"string"}
             }
         },
-        "endUser":{
+        "CreateAccount":{
             "type":"object",
             "properties":{
                 "username":{"type":"string"},
@@ -54,7 +54,7 @@
             },
             "required":["username","email","password"]
         },
-        "loguser":{
+        "userLogin":{
             "type":"object",
             "properties":{
                 "email":{"type":"string"},
@@ -84,14 +84,14 @@
 
             "/api/signup": {
                 "post":{
-                    "tags":["endUser"],
+                    "tags":["CreateAccount"],
                     "summary":"where to sign up as user by default",
                     "requestBody":{
                         "required":true,
                         "content": {
                             "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/endUser"
+                                "$ref": "#/components/schemas/CreateAccount"
                             }
                             }
                         }
@@ -102,7 +102,7 @@
                             "content": {
                                 "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/endUser"
+                                    "$ref": "#/components/schemas/CreateAccount"
                                 }
                                 }
                             }
@@ -117,7 +117,7 @@
 
             "/api/login": {
                 "post":{
-                    "tags":["loguser"],
+                    "tags":["userLogin"],
                     "summary":"Login as a user",
 
                     "requestBody":{
@@ -125,7 +125,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/loguser"
+                                    "$ref": "#/components/schemas/userLogin"
                                 }
                             }
                         }
@@ -137,7 +137,7 @@
                             "content": {
                                 "application/json": {
                                     "schema": {
-                                        "$ref": "#/components/schemas/loguser"
+                                        "$ref": "#/components/schemas/userLogin"
                                     }
                                 }
                             }
